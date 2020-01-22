@@ -1,0 +1,114 @@
+.card-header {
+    background: linear-gradient(40deg, #FFFF9F, #FFFF9F) !important;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    border: 1px solid #eee;
+}
+
+.card-header h4 {
+    color: #555 !important;
+}
+
+.card-home i {
+    color: #555 !important;
+}
+
+.btn-cornar {
+    background: #555 !important;
+    border-color: #555 !important;
+}
+
+.error-form {
+    color: #e74c3c !important;
+}
+
+.form-control {
+    border-radius: 4px !important;
+}
+
+#bootstrap-data-table th {
+    background: #FFFF9F;
+    color: #555;
+    line-height: 13px;
+}
+
+#bootstrap-data-table td {
+    line-height: 13px;
+}
+
+.btn-info {
+    background: #00C851;
+    color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    border-radius: .125rem;
+    border-color: #00C851 !important;
+}
+
+.btn-info:active {
+    background: #00aa45 !important;
+}
+
+btn-info:hover {
+    background: #00aa45 !important;
+}
+
+.btn-danger {
+    background: #FF3547;
+    color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    border-radius: .125rem;
+}
+
+.btn-info:hover {
+    background: #009c44 !important;
+}
+
+.text-white a {
+    color: white !important;
+
+}
+
+.table-bordered th {
+    background: linear-gradient(40deg, #FFFF9F, #FFFF9F) !important;
+    line-height: 12px !important;
+}
+
+.table-bordered td {
+    line-height: 12px !important;
+}
+
+.invalid-feedback strong {
+    color: red !important;
+}
+
+.btn-default {
+
+    background: #6E6E6E;
+    color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    border-radius: .125rem;
+    border-color: #6E6E6E !important;
+}
+
+.table-custom-profit {
+    margin: 50px 0 50px 0;
+}
+
+.table-custom-profit td, th {
+    text-align: center !important;
+}
+.table-levels{
+    font-size: 15px !important;
+    color: #555 !important;
+}
+.table-levels th {
+    background: #FFC000 !important;
+    padding: 10px 20px !important;
+    text-align: left !important;
+    color: #555 !important;
+}
+.table-levels td:first-child{
+    background: #92E1FF !important;
+}
+
