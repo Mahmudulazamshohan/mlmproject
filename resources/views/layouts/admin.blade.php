@@ -55,8 +55,11 @@
 
 
             <li class="header-icon dib">
-
+                @if(auth()->user()->Profile)
+                    <img class="avatar-img" src="{{url('/public/images/'.auth()->user()->Profile->image)}}" alt=""/>
+                @else
                     <img class="avatar-img" src="{{asset('/default-image.jpeg')}}" alt=""/>
+                @endif
 
                 <span class="user-avatar">@auth {{\Illuminate\Support\Facades\Auth::user()->name }}@endauth <i
                         class="ti-angle-down f-s-10"></i></span>
