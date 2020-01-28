@@ -29,7 +29,7 @@ class ProfileController extends Controller
         ]);
         $user = User::find(Auth::id());
         $user->name = $request->name;
-        if ($request->has('new_password')) {
+        if (isset($request->new_password)) {
             $user->password = Hash::make($request->new_password);
         }
         $imageLocation = null;

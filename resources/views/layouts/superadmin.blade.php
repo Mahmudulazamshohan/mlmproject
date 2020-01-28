@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        Admin Panel
+        InuaBiz
     </title>
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
@@ -31,14 +31,12 @@
     <link href="{{asset('assets/css/lib/unix.css') }}" rel="stylesheet">
     <link href="{{asset('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{asset('assets/main.css') }}" rel="stylesheet">
-    <link
-        href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css"
-        rel="stylesheet">
+    <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.css" rel="stylesheet"></link>
 </head>
 
 <body>
-@include('partials.sidebar')
+@include('partials.admin-sidebar')
 
 
 <div class="header">
@@ -55,21 +53,18 @@
 
 
             <li class="header-icon dib">
-
-                    <img class="avatar-img" src="{{asset('/default-image.jpeg')}}" alt=""/>
-
-                <span class="user-avatar">@auth {{\Illuminate\Support\Facades\Auth::user()->name }}@endauth <i
-                        class="ti-angle-down f-s-10"></i></span>
+                <img class="avatar-img" src="{{asset('/default-image.jpeg')}}" alt="" />
+                <span class="user-avatar">@auth {{\Illuminate\Support\Facades\Auth::user()->name }}@endauth <i class="ti-angle-down f-s-10"></i></span>
                 <div class="drop-down dropdown-profile">
 
                     <div class="dropdown-content-body">
                         <ul>
-                            <li><a href="{{route('profile')}}"><i class="ti-user"></i> <span>Profile</span></a></li>
+                            <li><a href="{{route('admin.profile')}}"><i class="ti-user"></i> <span>Profile</span></a></li>
 
                             <li><a href="#" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i
                                         class="ti-power-off"></i> <span>Logout</span></a></li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </ul>
@@ -85,10 +80,12 @@
 </div>
 
 
+
+
 <div id="search">
     <button type="button" class="close">×</button>
     <form>
-        <input type="search" value="" placeholder="type keyword(s) here"/>
+        <input type="search" value="" placeholder="type keyword(s) here" />
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
 
@@ -104,7 +101,7 @@
         text: '{{Session::get("message")}}',
         icon: 'success',
         confirmButtonText: 'Close',
-        onClose: function () {
+        onClose:function () {
             window.location.reload()
         }
     })
@@ -114,7 +111,7 @@
         text: '{{Session::get("message")}}',
         icon: 'error',
         confirmButtonText: 'Close',
-        onClose: function () {
+        onClose:function () {
             window.location.reload()
         }
     })
@@ -165,8 +162,7 @@
 <script src="{{asset('assets/js/lib/data-table/datatables-init.js') }}"></script>
 <script src="{{asset('assets/js/scripts.js') }}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-<script
-    src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+<script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
 
 @yield('scripts')
 <script>

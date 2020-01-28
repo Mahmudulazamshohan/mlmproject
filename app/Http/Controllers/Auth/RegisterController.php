@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\JoinIncome;
+use App\LevelIncome;
+use App\LevelSettings;
 use App\Providers\RouteServiceProvider;
 use App\TotalUpline;
 use App\Upline;
@@ -34,6 +37,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    protected $levelSetting = null;
 
     /**
      * Create a new controller instance.
@@ -43,6 +47,8 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->levelSetting = LevelSettings::first();
+
     }
 
     public function showRegistrationForm()
@@ -92,16 +98,25 @@ class RegisterController extends Controller
             $user->save();
 
             $this->mlmSystem($user, $data);
+            $this->joinIncomeAdd($user);
             $totalUpline = new TotalUpline();
             $totalUpline->user_id = $user->id;
             $totalUpline->save();
+            $levelIncome = new LevelIncome();
+            $levelIncome->user_id = $user->id;
+            $levelIncome->save();
         } catch (\Exception $exception) {
             DB::rollBack();
+            //dd($exception->getMessage());
         }
 
         return $user;
     }
 
+    /**
+     * @param $user
+     * @param $data
+     */
     private function mlmSystem($user, $data)
     {
         if (isset($user)) {
@@ -113,29 +128,34 @@ class RegisterController extends Controller
 
                 $upline->level1 = $refferalUser->id;
                 $this->addLevelTotalUpline($refferalUser->id, 'level1');
+                // $this->addLevelIncome($refferalUpline, 'level1');
 
 
                 if ($refferalUpline) {
                     if ($refferalUpline->level1) {
                         $upline->level2 = $refferalUpline->level1;
                         $this->addLevelTotalUpline($refferalUpline->level1, 'level2');
+                        // $this->addLevelIncome($refferalUpline->level1, 'level2');
 
                     }
                     if ($refferalUpline->level2) {
                         $upline->level3 = $refferalUpline->level2;
                         $this->addLevelTotalUpline($refferalUpline->level2, 'level3');
+                        //$this->addLevelIncome($refferalUpline->level2, 'level3');
 
 
                     }
                     if ($refferalUpline->level3) {
                         $upline->level4 = $refferalUpline->level3;
                         $this->addLevelTotalUpline($refferalUpline->level3, 'level4');
+                        //$this->addLevelIncome($refferalUpline->level3, 'level4');
 
 
                     }
                     if ($refferalUpline->level4) {
                         $upline->level5 = $refferalUpline->level4;
                         $this->addLevelTotalUpline($refferalUpline->level4, 'level5');
+                        //$this->addLevelIncome($refferalUpline->level4, 'level5');
 
 
                     }
@@ -188,6 +208,10 @@ class RegisterController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     * @param $level
+     */
     private function addLevelTotalUpline($id, $level)
     {
         $totalUpline = TotalUpline::where('user_id', $id);
@@ -195,6 +219,40 @@ class RegisterController extends Controller
         if ($users) {
             $totalUpline->update([
                 $level => $users->{$level} + 1
+            ]);
+            $this->addLevelIncome($id, $level, $users);
+
+        }
+    }
+
+    private function addLevelIncome($id, $level, $users)
+    {
+        $amount = 0;
+        if ($this->levelSetting) {
+            $amount = $this->levelSetting->refferal;
+        }
+        $totalUpline = TotalUpline::where('user_id', $id)->first();
+        for ($i = 1; $i <= 11; $i++) {
+            $levelIncome = LevelIncome::where('user_id', $id)->update([
+                'level' . $i => $totalUpline->{'level' . $i} * $amount
+            ]);
+        }
+
+
+    }
+
+    private function joinIncomeAdd($user)
+    {
+        $amount = 0;
+        if ($this->levelSetting) {
+            $amount = $this->levelSetting->join_income;
+        }
+
+
+        if ($user) {
+            JoinIncome::create([
+                'user_id' => $user->id,
+                'amount' => $amount
             ]);
         }
     }

@@ -22,8 +22,16 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="card p-10">
-                                            <b style="color: #555;">Refferal Link</b>
-                                            <input type="text" class="form-control mx-2" style="color: #6A55FF;font-weight: bold;" value="{{url('register?refferal_id='.auth()->user()->referral_code)}}">
+                                            <b style="color: #555;">Direct Refferal Link</b>
+                                            <input type="text" class="form-control mx-2" style="color: #6A55FF;font-weight: bold;background: #eee;" value="{{url('register?refferal_id='.auth()->user()->referral_code)}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card p-10">
+                                            <b style="color: #555;">Business Story(Refferal Link)</b>
+                                            <input type="text" class="form-control mx-2" style="color: #6A55FF;font-weight: bold;background: #eee;" value="{{route('story',auth()->user()->referral_code)}}">
                                         </div>
                                     </div>
                                 </div>
@@ -37,9 +45,13 @@
                                                     Business Story and Vision
                                                 </h4>
                                             </div>
-                                            <form action="">
-                                            <textarea name="" id="text-editor" cols="30" rows="10"
-                                                      class="form-control"></textarea>
+                                            <form action="{{route('refferal.story')}}" method="POST">
+                                             @csrf
+                                            <textarea name="story" id="text-editor" cols="30" rows="10"
+                                                      class="form-control">@if(auth()->user()->BusinessStory) {{auth()->user()->BusinessStory->story}} @endif </textarea>
+                                                <button type="submit" class="btn btn-info btn-sm my-4" style="margin-top: 10px;" >
+                                                    Save
+                                                </button>
                                             </form>
 
                                         </div>
@@ -55,7 +67,7 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+    <script type="text/javascript" src="{{asset('assets/js/nicEdit-latest.js')}}"></script>
 
     <script type="text/javascript">
         new nicEditor().panelInstance('text-editor');

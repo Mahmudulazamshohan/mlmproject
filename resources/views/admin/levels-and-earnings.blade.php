@@ -27,23 +27,41 @@
                                     </thead>
                                     <tbody>
                                     @php
-                                     $loanPeriod =[30,30,90,90,180,180,270,270,36,360,null];
-                                     $directPurchases =[65,50,50,50,35,35,25,25,20,15,10];
+                                        $loanPeriod =[30,30,90,90,180,180,270,270,36,360,null];
+                                        $directPurchases =[65,50,50,50,35,35,25,25,20,15,10];
+                                       $gracePeriod = [7,7,7,10,10,10,15,15,20,20,0];
                                     @endphp
                                     @for($i=1;$i<=11;$i++)
-                                    <tr>
-                                        <td>{{$i}}</td>
-                                        @if(auth()->user()->TotalUpline)
-                                        <td>{{auth()->user()->TotalUpline->{'level'.$i} }}</td>
-                                        @else
-                                            <td></td>
-                                        @endif
-                                        <td></td>
-                                        <td></td>
-                                        <td>{{$loanPeriod[$i-1]}}</td>
-                                        <td>{{$directPurchases[$i-1]}}</td>
-                                        <td></td>
-                                    </tr>
+                                        <tr>
+                                            <td>{{$i}}</td>
+                                            @if(auth()->user()->TotalUpline)
+                                                <td>{{auth()->user()->TotalUpline->{'level'.$i} }}</td>
+                                            @else
+                                                <td></td>
+                                            @endif
+                                            @if(auth()->user()->LevelIncome)
+                                                <td>{{auth()->user()->LevelIncome->{'level'.$i} }}</td>
+                                            @else
+                                                <td></td>
+                                            @endif
+                                            <td>{{$gracePeriod[$i-1]}}</td>
+
+                                            <td>{{$loanPeriod[$i-1]}}</td>
+                                            <td>{{$directPurchases[$i-1]}}</td>
+                                            @if($i == 2 || $i == 6 || $i == 10)
+                                                @if($i == 2)
+                                                    <td>2000</td>
+                                                @endif
+                                                @if($i == 6)
+                                                    <td>6000</td>
+                                                @endif
+                                                @if($i == 10)
+                                                    <td>1200</td>
+                                                @endif
+                                            @else
+                                                <td>-</td>
+                                            @endif
+                                        </tr>
                                     @endfor
 
                                     </tbody>

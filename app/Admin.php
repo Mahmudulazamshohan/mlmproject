@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
     use Notifiable;
 
@@ -36,16 +36,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function TotalUpline(){
-        return $this->hasOne(TotalUpline::class,'user_id','id');
-    }
-    public function LevelIncome(){
-        return $this->hasOne(LevelIncome::class,'user_id','id');
-    }
-    public function BusinessStory(){
-        return $this->hasOne(BusinessStory::class,'user_id','id');
-    }
-    public function Profile(){
-        return $this->hasOne(Profile::class,'user_id','id');
-    }
+
 }

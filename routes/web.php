@@ -18,19 +18,40 @@ use App\User;
 Route::get('/', function () {
     //returuniqidn ();
     return view('auth.login');
-});
+})->name('welcome');
 
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
 Route::get('/refferal-link', 'DashboardController@refferalLink')->name('refferal.link');
+Route::post('/refferal-story', 'DashboardController@refferalStory')->name('refferal.story');
 Route::get('/profile', 'ProfileController@profile')->name('profile');
 Route::post('/profile', 'ProfileController@storeProfile')->name('store.profile');
 Route::get('/withdraw', 'WithdrawController@withdraw')->name('withdraw');
+Route::post('/withdraw', 'WithdrawController@storeWithdraw')->name('store.withdraw');
 Route::get('/levels-and-earnings', 'LevelsEarningsController@levelsAndEarnings')->name('levels-and-earnings');
+Route::get('/story/{id}','HomeController@story')->name('story');
+Route::prefix('admin')->group(function (){
+    Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::post('/store-login', 'Auth\AdminLoginController@login')->name('admin.store-login');
+    Route::post('/logout', function (){
+        \Illuminate\Support\Facades\Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
+    })->name('admin.logout');
 
-//Route::get('/test', function () {
+    Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+    Route::get('/withdraw-request', 'AdminController@withdrawRequest')->name('admin.withdraw-request');
+    Route::get('/withdraw-paid/{id}', 'AdminController@withdrawPaid')->name('admin.withdraw-paid');
+    Route::get('/users', 'AdminController@users')->name('admin.users');
+    Route::get('/level-settings', 'AdminController@levelSettings')->name('admin.level-settings');
+    Route::post('/level-settings', 'AdminController@storeLevelSettings')->name('admin.store-level-settings');
+    Route::get('/profile', 'AdminController@profile')->name('admin.profile');
+    Route::post('/profile', 'AdminController@storeProfile')->name('admin.store.profile');
+});
+Route::get('/test', function () {
+    echo \Illuminate\Support\Facades\Hash::make('123456').'';
+    for ($i=1;$i<=11;$i++){echo $i;}
 //    $user = User::find(2);
 //    if (isset($user)) {
 //        $refferalUser = User::where('referral_code', $user->referral_code)->first();
@@ -84,4 +105,4 @@ Route::get('/levels-and-earnings', 'LevelsEarningsController@levelsAndEarnings')
 //        }
 //
 //    }
-//});
+});

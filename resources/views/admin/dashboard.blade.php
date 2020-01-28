@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="stat-content">
                                             <div class="stat-text">Total</div>
-                                            <div class="stat-digit">6,250</div>
+                                            <div class="stat-digit">{{$totalAmount - ($totalWithdraw + $withdrawPending + $totalWithdrawFees + $withdrawPendingFees)}}</div>
                                         </div>
 
                                     </div>
@@ -58,43 +58,17 @@
                                             <i class="ti-bag"></i>
                                         </div>
                                         <div class="stat-content">
-                                            <div class="stat-text">Today Delevered</div>
-                                            <div class="stat-digit">2,584</div>
+                                            <div class="stat-text">Today Earn</div>
+                                            <div class="stat-digit">{{$todayAmount}}</div>
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-6">
-                                <div class="card p-0">
-                                    <div class="stat-widget-three">
-                                        <div class="stat-icon bg-warning">
-                                            <i class="ti-user"></i>
-                                        </div>
-                                        <div class="stat-content">
-                                            <div class="stat-text">New Customer</div>
-                                            <div class="stat-digit">9,874</div>
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="col-lg-6">
-                                <div class="card p-0">
-                                    <div class="stat-widget-three">
-                                        <div class="stat-icon bg-danger">
-                                            <i class="ti-money"></i>
-                                        </div>
-                                        <div class="stat-content">
-                                            <div class="stat-text">Net Earning</div>
-                                            <div class="stat-digit">3,5621</div>
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="col-lg-6">
                                 <div class="card bg-success">
@@ -104,8 +78,8 @@
                                         </div>
                                         <div class="stat-content p-t-12 p-b-12">
                                             <div class="text-left dib">
-                                                <div class="stat-heading">Daily sales</div>
-                                                <div class="stat-text">Total: 9765</div>
+                                                <div class="stat-heading">Withdraw</div>
+                                                <div class="stat-text">{{$totalWithdraw }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -116,12 +90,12 @@
                                 <div class="card bg-primary">
                                     <div class="stat-widget-six">
                                         <div class="stat-icon p-15">
-                                            <i class="ti-stats-down"></i>
+                                            <i class="ti-stats-up"></i>
                                         </div>
                                         <div class="stat-content p-t-12 p-b-12">
                                             <div class="text-left dib">
-                                                <div class="stat-heading">Daily Expense</div>
-                                                <div class="stat-text">Total: 6765</div>
+                                                <div class="stat-heading">Withdraw Pending</div>
+                                                <div class="stat-text">{{$withdrawPending}}</div>
                                             </div>
                                         </div>
                                     </div>
