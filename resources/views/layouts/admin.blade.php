@@ -53,7 +53,7 @@
     <div class="pull-right p-r-15">
         <ul>
 
-
+            @include('layouts.push-notification')
             <li class="header-icon dib">
                 @if(auth()->user()->Profile)
                     <img class="avatar-img" src="{{url('/public/images/'.auth()->user()->Profile->image)}}" alt=""/>

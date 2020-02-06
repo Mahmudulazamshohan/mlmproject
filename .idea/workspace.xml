@@ -2,20 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d30d668-e292-4ace-882e-a4181cc7fb13" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/mlmproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mlmproject.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/notifications.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/view-notification.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/push-notification.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/edit-manage-news.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/manage-news.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/manage-views.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AdminLoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AdminLoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Upline.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Upline.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mlmproject.zip" beforeDir="false" afterPath="$PROJECT_DIR$/mlmproject.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/refferal-link.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/refferal-link.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/superadmin-login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/superadmin-login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/admin-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/admin-sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +156,9 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\phpdir\htdocs\mlmproject\resources\views\layouts" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\phpdir\htdocs\mlmproject\assets\images" />
       <recent name="C:\phpdir\htdocs\mlmproject\public\assets\images" />
@@ -203,7 +206,7 @@
       <workItem from="1580833296582" duration="5449000" />
       <workItem from="1580878262152" duration="5307000" />
       <workItem from="1580922467378" duration="1879000" />
-      <workItem from="1580989638853" duration="4851000" />
+      <workItem from="1580989638853" duration="11462000" />
     </task>
     <servers />
   </component>
@@ -228,6 +231,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="404" y="63" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1580995336646" />
+    <state x="463" y="273" key="NewPhpFileDialog" timestamp="1581001814299">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="273" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1581001814299" />
     <state x="289" y="38" width="787" height="652" key="find.popup" timestamp="1580836967881">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

@@ -32,6 +32,8 @@ Route::get('/withdraw', 'WithdrawController@withdraw')->name('withdraw');
 Route::post('/withdraw', 'WithdrawController@storeWithdraw')->name('store.withdraw');
 Route::get('/levels-and-earnings', 'LevelsEarningsController@levelsAndEarnings')->name('levels-and-earnings');
 Route::get('/story/{id}','HomeController@story')->name('story');
+Route::get('/view-notification/{id}','DashboardController@viewNotification')->name('view-notification');
+Route::get('/notifications','DashboardController@notifications')->name('notifications');
 Route::prefix('admin')->group(function (){
     Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/store-login', 'Auth\AdminLoginController@login')->name('admin.store-login');
@@ -48,6 +50,10 @@ Route::prefix('admin')->group(function (){
     Route::post('/level-settings', 'AdminController@storeLevelSettings')->name('admin.store-level-settings');
     Route::get('/profile', 'AdminController@profile')->name('admin.profile');
     Route::post('/profile', 'AdminController@storeProfile')->name('admin.store.profile');
+    Route::get('/manage-news', 'AdminController@manageNews')->name('admin.manage-news');
+    Route::post('/manage-news', 'AdminController@storeManageNews')->name('admin.store.manage-news');
+    Route::get('/edit-manage-news/{id}', 'AdminController@editManageNews')->name('admin.edit.manage-news');
+    Route::get('/delete-manage-news/{id}', 'AdminController@deleteManageNews')->name('admin.delete.manage-news');
 });
 Route::get('/test', function () {
     echo \Illuminate\Support\Facades\Hash::make('123456').'';

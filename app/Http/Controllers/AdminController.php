@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use App\LevelSettings;
+use App\PushNotification;
 use App\User;
 use App\Withdraw;
 use Illuminate\Http\Request;
@@ -134,6 +135,59 @@ class AdminController extends Controller
                     ->with('message', 'Profile Failed to updated');
             }
 
+        }
+    }
+
+    public function manageNews()
+    {
+        $pushNotifications = PushNotification::orderBy('id', 'desc')->paginate(10);
+
+        return view('superadmin.manage-news', compact('pushNotifications'));
+    }
+
+    public function storeManageNews(Request $request)
+    {
+        $this->validate($request, [
+            'text' => 'required'
+        ]);
+        $pushNotification = PushNotification::updateOrCreate(
+            [
+                'id' => $request->id
+            ],
+            [
+                'text' => $request->text
+            ]
+        );
+        if ($pushNotification) {
+            return redirect()->back()
+                ->with('success', true)
+                ->with('message', 'Notification created successfully');
+        } else {
+            return redirect()->back()
+                ->with('fail', true)
+                ->with('message', 'Notification faild to create , please try again');
+        }
+
+    }
+
+    public function editManageNews($id)
+    {
+        $pushNotification = PushNotification::find($id);
+        return view('superadmin.edit-manage-news', compact('pushNotification'));
+    }
+
+    public function deleteManageNews($id)
+    {
+        $pushNotification = PushNotification::where('id', $id)->delete();
+
+        if ($pushNotification) {
+            return redirect()->back()
+                ->with('success', true)
+                ->with('message', 'Notification deleted successfully');
+        } else {
+            return redirect()->back()
+                ->with('fail', true)
+                ->with('message', 'Notification faild to delete , please try again');
         }
     }
 

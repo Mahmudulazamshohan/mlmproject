@@ -6,6 +6,8 @@ use App\BusinessStory;
 use App\JoinIncome;
 use App\LevelIncome;
 use App\LevelSettings;
+use App\PushNotification;
+use App\PushNotificationView;
 use App\Upline;
 use App\Withdraw;
 use Illuminate\Http\Request;
@@ -81,6 +83,22 @@ class DashboardController extends Controller
                 ->with('fail', true)
                 ->with('message', 'Story Failed to save');
         }
+    }
+    public function viewNotification($id){
+        $pushNotification = PushNotification::find($id);
+        $pushNotificationView = PushNotificationView::where('push_notification_views_id',$id)->first();
+        if($pushNotification && !$pushNotificationView){
+            $pushNotification = PushNotificationView::create([
+                'push_notification_views_id'=>$id,
+                'user_id'=>Auth::id()
+            ]);
+        }
+        return view('admin.view-notification',compact('pushNotification'));
+    }
+
+    public function notifications(){
+        $pushNotifications = PushNotification::all();
+        return view('admin.notifications',compact('pushNotifications'));
     }
 
 
