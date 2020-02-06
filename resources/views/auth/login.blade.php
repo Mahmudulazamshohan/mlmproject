@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>InuaBiz | Login</title>
+    <title>InuaBizz | Login</title>
 
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
@@ -39,7 +39,7 @@
 
                     </div>
                     <div class="login-form">
-                        <p style="font-size: 30px;font-family: cursive;text-align: center;color: #0ea432;">InuaBiz</p>
+                        <p style="font-size: 30px;font-family: cursive;text-align: center;color: #0ea432;">{{env('APP_NAME')}}</p>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group @error('email') has-error @enderror">
@@ -65,9 +65,9 @@
                                 <label>
                                     <input type="checkbox"> Remember Me
                                 </label>
-                                <label class="pull-right">
-                                    <a href="#">Forgotten Password?</a>
-                                </label>
+{{--                                <label class="pull-right">--}}
+{{--                                    <a href="#">Forgotten Password?</a>--}}
+{{--                                </label>--}}
 
                             </div>
                             <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>

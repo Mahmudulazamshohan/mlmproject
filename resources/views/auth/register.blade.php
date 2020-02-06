@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>InuaBiz | Register</title>
+    <title>{{env('APP_NAME')}} | Register</title>
 
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
@@ -37,18 +37,18 @@
             <div class="col-lg-5 col-lg-offset-3">
                 <div class="login-content">
                     @if(!$refferal_id)
-                    <h4 style="color: #fff;background: red;padding: 10px;border-radius: 4px;">
-                        <span>Invalid refferal link</span>
-                        <span>
-                            <p>Please add valid refferal id</p>
+                        <h4 style="color: #fff;background: red;padding: 10px;border-radius: 4px;">
+                            <span>Invalid referral link</span>
+                            <span>
+                            <p>Please add valid Referral id</p>
                         </span>
-                    </h4>
+                        </h4>
                     @endif
                     <div class="login-logo">
 
                     </div>
                     <div class="login-form">
-                        <p style="font-size: 30px;font-family: cursive;text-align: center;color: #0ea432;">InuaBiz</p>
+                        <p style="font-size: 30px;font-family: cursive;text-align: center;color: #0ea432;">{{env('APP_NAME')}}</p>
 
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
@@ -74,7 +74,9 @@
                             </div>
                             <div class="form-group @error('password') has-error @enderror">
                                 <label>Password</label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password"
+                                       class="form-control @error('password') is-invalid @enderror" name="password"
+                                       required autocomplete="new-password">
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                         <strong class="error-form" style="color: red;">{{ $message }}</strong>
@@ -83,7 +85,8 @@
                             </div>
                             <div class="form-group @error('password_confirmation') has-error @enderror">
                                 <label>Confirm Password</label>
-                                <input  id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control"
+                                       name="password_confirmation" required autocomplete="new-password">
                                 @error('password_confirmation')
                                 <span class="invalid-feedback" role="alert">
                                         <strong class="error-form" style="color: red;">{{ $message }}</strong>
@@ -91,20 +94,30 @@
                                 @enderror
                             </div>
                             @if($refferal_id)
-                            <div class="form-group">
-                                <label>Refferal ID</label>
-                                <input  type="hidden" class="form-control" name="referral_code" value="{{$refferal_id}}" >
-                                <input  type="text" class="form-control" value="{{$refferal_id}}" disabled>
+                                <div class="form-group">
+                                    <label>Referral ID</label>
+                                    <input type="hidden" class="form-control" name="referral_code"
+                                           value="{{$refferal_id}}">
+                                    <input type="text" class="form-control" value="{{$refferal_id}}" disabled>
 
-                            </div>
+                                </div>
                             @endif
 
-                            <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" @if(!$refferal_id) disabled @endif>  {{ __('Register') }}</button>
+                            <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30"
+                                    @if(!$refferal_id) disabled @endif>  {{ __('Register') }}</button>
 
                             <div class="register-link m-t-15 text-center">
                                 <p>Aready have an account ? <a href="{{route('login')}}"> Login here</a></p>
                             </div>
                         </form>
+                        <div class="boxes" style="background: #eee;padding: 10px ; text-align: center;border-radius: 4px;border: 1px solid #d8d8d8;">
+                            <h4 style="line-height: 1em;margin: 10px 0px;padding: 0;">Contact with us:</h4>
+                            <p style="word-break: 2px !important;">
+                                Email : support@inuabizz.com
+                            </p>
+                            <p>Phone : +254751730030</p>
+                        </div>
+
                     </div>
                 </div>
             </div>

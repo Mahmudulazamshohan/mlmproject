@@ -39,7 +39,7 @@
 
                     </div>
                     <div class="login-form">
-                        <p style="font-size: 30px;font-family: cursive;text-align: center;color: #0ea432;">InuaBiz</p>
+                        <p style="font-size: 30px;font-family: cursive;text-align: center;color: #0ea432;">InuaBizz</p>
                         <p style="text-align: center;font-weight: bold;font-size: 15px;">Admin Login</p>
                         <form method="POST" action="{{ route('admin.store-login') }}">
                             @csrf
@@ -66,16 +66,12 @@
                                 <label>
                                     <input type="checkbox"> Remember Me
                                 </label>
-                                <label class="pull-right">
-                                    <a href="#">Forgotten Password?</a>
-                                </label>
+
 
                             </div>
                             <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
 
-                            <div class="register-link m-t-15 text-center">
-                                <p>Don't have account ? <a href="{{route('register')}}"> Sign Up Here</a></p>
-                            </div>
+
                         </form>
                     </div>
                 </div>

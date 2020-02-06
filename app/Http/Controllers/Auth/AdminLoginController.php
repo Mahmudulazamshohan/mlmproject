@@ -27,7 +27,7 @@ class AdminLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:admin')->except('admin/logout');
+        $this->middleware('guest:admin')->except('logout');
     }
     /**
      * Show the application's login form.
@@ -126,7 +126,7 @@ class AdminLoginController extends Controller
         $this->clearLoginAttempts($request);
 
         return $this->authenticated($request, $this->guard()->user())
-            ?: redirect()->intended($this->redirectPath());
+            ?: redirect()->route('admin.dashboard');
     }
 
     /**

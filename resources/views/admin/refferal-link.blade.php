@@ -15,14 +15,14 @@
                             <div class="card">
                                 <div class="card-header"
                                      style="background: #1DE9B6 !important;border: none;border-radius: 0;">
-                                    <h4 style="color: #fff !important;">Refferal Link <b style="font-size: 12px;">(copy this and share with other's)</b></h4>
+                                    <h4 style="color: #fff !important;">Referral Link <b style="font-size: 12px;">(copy this and share with other's)</b></h4>
                                     <div class="card-header-right-icon" style="color: #fff;font-weight: bold;">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="card p-10">
-                                            <b style="color: #555;">Direct Refferal Link</b>
+                                            <b style="color: #555;">Direct Referral Link</b>
                                             <input type="text" class="form-control mx-2" style="color: #6A55FF;font-weight: bold;background: #eee;" value="{{url('register?refferal_id='.auth()->user()->referral_code)}}">
                                         </div>
                                     </div>
@@ -30,7 +30,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="card p-10">
-                                            <b style="color: #555;">Business Story(Refferal Link)</b>
+                                            <b style="color: #555;">Business Story(Referral Link)</b>
                                             <input type="text" class="form-control mx-2" style="color: #6A55FF;font-weight: bold;background: #eee;" value="{{route('story',auth()->user()->referral_code)}}">
                                         </div>
                                     </div>

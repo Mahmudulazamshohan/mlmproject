@@ -29,159 +29,325 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card p-10">
-                            <b style="color: #555;">Share your refferal link with others</b><br>
-                            <a href="{{route('refferal.link')}}" class="btn btn-info">Refferal Link</a>
+                            <b style="color: #555;">Share your referral link with others</b><br>
+                            <a href="{{route('refferal.link')}}" class="btn btn-info">Referral Link</a>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card p-0">
-                                    <div class="stat-widget-three">
-                                        <div class="stat-icon bg-primary">
-                                            <i class="ti-wallet"></i>
-                                        </div>
-                                        <div class="stat-content">
-                                            <div class="stat-text">Total</div>
-                                            <div class="stat-digit">{{$totalAmount - ($totalWithdraw + $withdrawPending + $totalWithdrawFees + $withdrawPendingFees)}}</div>
-                                        </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card p-0">
+                                        <div class="stat-widget-three">
+                                            <div class="stat-icon bg-primary">
+                                                <i class="ti-wallet"></i>
+                                            </div>
+                                            <div class="stat-content">
+                                                <div class="stat-text">Total</div>
+                                                <div
+                                                    class="stat-digit">{{$totalAmount - ($totalWithdraw + $withdrawPending + $totalWithdrawFees + $withdrawPendingFees)}}</div>
+                                            </div>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col-lg-6">
-                                <div class="card p-0">
-                                    <div class="stat-widget-three">
-                                        <div class="stat-icon bg-success">
-                                            <i class="ti-bag"></i>
-                                        </div>
-                                        <div class="stat-content">
-                                            <div class="stat-text">Today Earn</div>
-                                            <div class="stat-digit">{{$todayAmount}}</div>
-                                        </div>
+                                <div class="col-lg-6">
+                                    <div class="card p-0">
+                                        <div class="stat-widget-three">
+                                            <div class="stat-icon bg-success">
+                                                <i class="ti-bag"></i>
+                                            </div>
+                                            <div class="stat-content">
+                                                <div class="stat-text">Today Earn</div>
+                                                <div class="stat-digit">{{$todayAmount}}</div>
+                                            </div>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
 
-
-
-
-                            <div class="col-lg-6">
-                                <div class="card bg-success">
-                                    <div class="stat-widget-six">
-                                        <div class="stat-icon p-15">
-                                            <i class="ti-stats-up"></i>
-                                        </div>
-                                        <div class="stat-content p-t-12 p-b-12">
-                                            <div class="text-left dib">
-                                                <div class="stat-heading">Withdraw</div>
-                                                <div class="stat-text">{{$totalWithdraw }}</div>
+                                <div class="col-lg-6">
+                                    <div class="card bg-success">
+                                        <div class="stat-widget-six">
+                                            <div class="stat-icon p-15">
+                                                <i class="ti-stats-up"></i>
+                                            </div>
+                                            <div class="stat-content p-t-12 p-b-12">
+                                                <div class="text-left dib">
+                                                    <div class="stat-heading">Withdraw</div>
+                                                    <div class="stat-text">{{$totalWithdraw }}</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col-lg-6">
-                                <div class="card bg-primary">
-                                    <div class="stat-widget-six">
-                                        <div class="stat-icon p-15">
-                                            <i class="ti-stats-up"></i>
-                                        </div>
-                                        <div class="stat-content p-t-12 p-b-12">
-                                            <div class="text-left dib">
-                                                <div class="stat-heading">Withdraw Pending</div>
-                                                <div class="stat-text">{{$withdrawPending}}</div>
+                                <div class="col-lg-6">
+                                    <div class="card bg-primary">
+                                        <div class="stat-widget-six">
+                                            <div class="stat-icon p-15">
+                                                <i class="ti-stats-up"></i>
+                                            </div>
+                                            <div class="stat-content p-t-12 p-b-12">
+                                                <div class="text-left dib">
+                                                    <div class="stat-heading">Withdraw Pending</div>
+                                                    <div class="stat-text">{{$withdrawPending}}</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-
-                </div>
-                <!-- /# row -->
-                <div class="row">
-
-                    <!-- /# column -->
-                    <div class="col-lg-12">
-                        <div class="card alert">
-                            <div class="card-header">
-                                <h4> Total Refferal </h4>
-                                <div class="card-header-right-icon">
-                                    <ul>
-                                        <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4> Referral List </h4>
+                                    <div class="card-header-right-icon">
+                                        <ul>
+                                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
                                         </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-bordered table-hover ">
-                                    <thead>
-                                    <tr>
-                                        <th>Level 1</th>
-                                        <th>Level 2</th>
-                                        <th>Level 3</th>
-                                        <th>Level 4</th>
-                                        <th>Level 5</th>
-                                        <th>Level 6</th>
-                                        <th>Level 7</th>
-                                        <th>Level 8</th>
-                                        <th>Level 9</th>
-                                        <th>Level 10</th>
-                                        <th>Level 11</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @if(auth()->user()->TotalUpline)
-                                    <tr>
-                                        <td>{{auth()->user()->TotalUpline->level1}}</td>
-                                        <td>{{auth()->user()->TotalUpline->level2}}</td>
-                                        <td>{{auth()->user()->TotalUpline->level3}}</td>
-                                        <td>{{auth()->user()->TotalUpline->level4}}</td>
-                                        <td>{{auth()->user()->TotalUpline->level5}}</td>
-                                        <td>{{auth()->user()->TotalUpline->level6}}</td>
-                                        <td>{{auth()->user()->TotalUpline->level7}}</td>
-                                        <td>{{auth()->user()->TotalUpline->level8}}</td>
-                                        <td>{{auth()->user()->TotalUpline->level9}}</td>
-                                        <td>{{auth()->user()->TotalUpline->level10}}</td>
-                                        <td>{{auth()->user()->TotalUpline->level11}}</td>
-                                    </tr>
-                                    @else
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    @endif
+                                <div class="card-body">
+                                    <table class="table table-bordered table-levels text-left">
+                                        <thead>
+                                        <tr>
+                                            <th>User Id</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Referral ID</th>
+                                            <th>Join At</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($uplines as $upline)
+                                            @if($upline->User)
+                                                <tr>
+                                                    <td style="background: white !important;">{{$upline->user_id}}</td>
+                                                    <td>{{$upline->User->name}}</td>
+                                                    <td>{{$upline->User->email}}</td>
+                                                    <td>{{$upline->User->referral_code}}</td>
+                                                    <td style="text-align: left !important;">{{$upline->User->created_at->diffForHumans()}}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                    {{$uplines->links()}}
 
 
-                                    </tbody>
-                                </table>
+
+                                    {{--                                    <ul class="timeline">--}}
+                                    {{--                                        @for($i=1;$i<=11;$i++)--}}
+                                    {{--                                        <!-- Item 1 -->--}}
+                                    {{--                                        <li>--}}
+                                    {{--                                            <div class="direction-r">--}}
+                                    {{--                                                <div class="flag-wrapper">--}}
+                                    {{--                                                    <span class="flag">--}}
+                                    {{--                                                        Level {{$i}}--}}
+                                    {{--                                                    </span>--}}
+                                    {{--                                                    @if(auth()->user()->Upline)--}}
+                                    {{--                                                    <span class="time-wrapper">--}}
+                                    {{--                                                        @if(auth()->user()->Upline->{'level'.$i})--}}
+                                    {{--                                                        <span class="time">--}}
+                                    {{--                                                            @php--}}
+                                    {{--                                                             $user_id = auth()->user()->Upline->{'level'.$i};--}}
+                                    {{--                                                             $user = \App\User::find($user_id);--}}
+                                    {{--                                                            @endphp--}}
+                                    {{--                                                            @if($user)--}}
+                                    {{--                                                            Name: {{$user->name }}<br>--}}
+                                    {{--                                                            Email:{{$user->email }}--}}
+                                    {{--                                                            @endif--}}
+                                    {{--                                                        </span>--}}
+                                    {{--                                                        @else--}}
+                                    {{--                                                            <span class="time">EMPTY</span>--}}
+                                    {{--                                                        @endif--}}
+                                    {{--                                                    </span>--}}
+                                    {{--                                                    @else--}}
+                                    {{--                                                        <span class="time-wrapper">--}}
+                                    {{--                                                        <span class="time">EMPTY</span>--}}
+                                    {{--                                                    </span>--}}
+                                    {{--                                                    @endif--}}
+                                    {{--                                                </div>--}}
+
+                                    {{--                                            </div>--}}
+                                    {{--                                        </li>--}}
+                                    {{--                                        @endfor--}}
+
+
+
+                                    {{--                                    </ul>--}}
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- /# column -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4> Loan Indicator </h4>
+                                    <div class="card-header-right-icon">
+                                        <ul>
+                                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered table-levels text-left">
+                                        <thead>
+                                        <tr>
+                                            <th>User Id</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Referral ID</th>
+                                            <th>Join At</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($uplines as $upline)
+                                            @if($upline->User)
+                                                <tr>
+                                                    <td style="background: white !important;">{{$upline->user_id}}</td>
+                                                    <td>{{$upline->User->name}}</td>
+                                                    <td>{{$upline->User->email}}</td>
+                                                    <td>{{$upline->User->referral_code}}</td>
+                                                    <td style="text-align: left !important;">{{$upline->User->created_at->diffForHumans()}}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                    {{$uplines->links()}}
+
+
+
+                                    {{--                                    <ul class="timeline">--}}
+                                    {{--                                        @for($i=1;$i<=11;$i++)--}}
+                                    {{--                                        <!-- Item 1 -->--}}
+                                    {{--                                        <li>--}}
+                                    {{--                                            <div class="direction-r">--}}
+                                    {{--                                                <div class="flag-wrapper">--}}
+                                    {{--                                                    <span class="flag">--}}
+                                    {{--                                                        Level {{$i}}--}}
+                                    {{--                                                    </span>--}}
+                                    {{--                                                    @if(auth()->user()->Upline)--}}
+                                    {{--                                                    <span class="time-wrapper">--}}
+                                    {{--                                                        @if(auth()->user()->Upline->{'level'.$i})--}}
+                                    {{--                                                        <span class="time">--}}
+                                    {{--                                                            @php--}}
+                                    {{--                                                             $user_id = auth()->user()->Upline->{'level'.$i};--}}
+                                    {{--                                                             $user = \App\User::find($user_id);--}}
+                                    {{--                                                            @endphp--}}
+                                    {{--                                                            @if($user)--}}
+                                    {{--                                                            Name: {{$user->name }}<br>--}}
+                                    {{--                                                            Email:{{$user->email }}--}}
+                                    {{--                                                            @endif--}}
+                                    {{--                                                        </span>--}}
+                                    {{--                                                        @else--}}
+                                    {{--                                                            <span class="time">EMPTY</span>--}}
+                                    {{--                                                        @endif--}}
+                                    {{--                                                    </span>--}}
+                                    {{--                                                    @else--}}
+                                    {{--                                                        <span class="time-wrapper">--}}
+                                    {{--                                                        <span class="time">EMPTY</span>--}}
+                                    {{--                                                    </span>--}}
+                                    {{--                                                    @endif--}}
+                                    {{--                                                </div>--}}
+
+                                    {{--                                            </div>--}}
+                                    {{--                                        </li>--}}
+                                    {{--                                        @endfor--}}
+
+
+
+                                    {{--                                    </ul>--}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /# row -->
+                    <div class="row">
+
+                        <!-- /# column -->
+                        <div class="col-lg-12">
+                            <div class="card alert">
+                                <div class="card-header">
+                                    <h4> Level and Earnings table </h4>
+                                    <div class="card-header-right-icon">
+                                        <ul>
+                                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered table-levels">
+                                        <thead>
+                                        <tr>
+                                            <th>Level</th>
+                                            <th>Direct Level</th>
+                                            <th>Load Accessible</th>
+                                            <th>Achieve Date</th>
+                                            <th>Release Date</th>
+                                            <th>Payable by date</th>
+                                            <th>Bonuses
+                                                (Ksh)
+                                            </th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @if(auth()->user()->TotalUpline)
+                                            @for($i=1;$i<=11;$i++)
+                                                <tr>
+                                                    <td>{{$i}}</td>
+                                                    <td>{{auth()->user()->TotalUpline->level2}}</td>
+                                                    <td>{{auth()->user()->TotalUpline->level3}}</td>
+                                                    <td>{{auth()->user()->TotalUpline->level4}}</td>
+                                                    <td>{{auth()->user()->TotalUpline->level5}}</td>
+                                                    <td>{{auth()->user()->TotalUpline->level6}}</td>
+                                                    <td>{{auth()->user()->TotalUpline->level7}}</td>
+
+                                                </tr>
+                                            @endfor
+                                        @else
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        @endif
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /# column -->
+                    </div>
+
+
+                    <!-- /# row -->
                 </div>
-
-
-                <!-- /# row -->
+                <!-- /# main content -->
             </div>
-            <!-- /# main content -->
+            <!-- /# container-fluid -->
         </div>
-        <!-- /# container-fluid -->
-    </div>
 
 @endsection

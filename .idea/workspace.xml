@@ -2,11 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d30d668-e292-4ace-882e-a4181cc7fb13" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/mlmproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mlmproject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AdminLoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AdminLoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Upline.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Upline.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlmproject.zip" beforeDir="false" afterPath="$PROJECT_DIR$/mlmproject.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/refferal-link.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/refferal-link.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/superadmin-login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/superadmin-login.blade.php" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -133,6 +143,11 @@
   </component>
   <component name="ProjectId" id="1WfFsFszEzwWvHBLNEiwqTw9CVW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -148,18 +163,6 @@
       <recent name="C:\phpdir\htdocs\mlmproject\public\assets\js" />
       <recent name="C:\phpdir\htdocs\mlmproject\resources\views\superadmin" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -196,6 +199,11 @@
       <workItem from="1580220430181" duration="2062000" />
       <workItem from="1580283146672" duration="1105000" />
       <workItem from="1580302964183" duration="1443000" />
+      <workItem from="1580794263848" duration="3823000" />
+      <workItem from="1580833296582" duration="5449000" />
+      <workItem from="1580878262152" duration="5307000" />
+      <workItem from="1580922467378" duration="1879000" />
+      <workItem from="1580989638853" duration="4851000" />
     </task>
     <servers />
   </component>
@@ -214,6 +222,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="404" y="63" key="FileChooserDialogImpl" timestamp="1580995336646">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="404" y="63" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1580995336646" />
+    <state x="289" y="38" width="787" height="652" key="find.popup" timestamp="1580836967881">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="289" y="38" width="787" height="652" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1580836967881" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

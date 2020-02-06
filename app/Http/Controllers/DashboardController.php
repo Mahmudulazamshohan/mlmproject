@@ -6,6 +6,7 @@ use App\BusinessStory;
 use App\JoinIncome;
 use App\LevelIncome;
 use App\LevelSettings;
+use App\Upline;
 use App\Withdraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,9 +48,9 @@ class DashboardController extends Controller
         $totalWithdraw = $withdraws->where('status',1)->sum('amount');
         $withdrawPendingFees = $withdraws->where('status',0)->sum('fees');
         $totalWithdrawFees = $withdraws->where('status',1)->sum('fees');
-
+        $uplines = Upline::where('level1',Auth::id())->paginate(10);
         return view('admin.dashboard', compact('totalAmount','todayAmount','totalWithdraw','withdrawPending','withdrawPendingFees'
-,'totalWithdrawFees'));
+,'totalWithdrawFees','uplines'));
     }
 
     public function refferalLink()

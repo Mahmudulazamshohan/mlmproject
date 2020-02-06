@@ -36,6 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function Upline(){
+        return $this->hasOne(Upline::class,'user_id','id');
+    }
     public function TotalUpline(){
         return $this->hasOne(TotalUpline::class,'user_id','id');
     }
