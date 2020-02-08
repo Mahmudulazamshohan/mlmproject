@@ -9,7 +9,7 @@
                             <div class="card alert">
                                 <div class="card-header"
                                      style="background: #1DE9B6 !important;border: none;border-radius: 0;">
-                                    <h4 style="color: #fff !important;">Withdraw Request From Users</h4>
+                                    <h4 style="color: #fff !important;">Withdraw history of members</h4>
                                     <div class="card-header-right-icon" style="color: #fff;font-weight: bold;">
                                     </div>
                                 </div>
@@ -26,11 +26,9 @@
                                                 Amount (Ksh)
                                             </th>
                                             <th>
-                                                Fee(Ksh)
+                                                Fee(Ksh) (7%)
                                             </th>
-                                            <th>
-                                                Action
-                                            </th>
+
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -41,15 +39,7 @@
                                                 <td>{{$withdraw->account}}</td>
                                                 <td>{{$withdraw->amount}}</td>
                                                 <td>{{$withdraw->fees}}</td>
-                                                <td>
-                                                    @if($withdraw->status)
-                                                        <a href="{{route('admin.withdraw-paid',$withdraw->id)}}"
-                                                           class="btn btn-sm btn-info">Paid</a>
-                                                    @else
-                                                        <a href="{{route('admin.withdraw-paid',$withdraw->id)}}"
-                                                           class="btn btn-sm btn-danger">Unpaid</a>
-                                                    @endif
-                                                </td>
+
                                             </tr>
                                         @endforeach
 

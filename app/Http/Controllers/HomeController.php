@@ -32,13 +32,18 @@ class HomeController extends Controller
     {
         $user = User::where('referral_code', $id)->first();
         $businessStory = null;
-        if ($user) {
+        if ($user && !$user->is_blocked) {
 
             $businessStory = BusinessStory::where('user_id', $user->id)->first();
 
             return view('admin.story', compact('id', 'businessStory'));
+        }else{
+            return view('admin.block');
         }
 
     }
 
+    public function blocked(){
+        return view('admin.block');
+    }
 }

@@ -17,7 +17,7 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','block']);
     }
 
     public function dashboard()
@@ -86,7 +86,7 @@ class DashboardController extends Controller
     }
     public function viewNotification($id){
         $pushNotification = PushNotification::find($id);
-        $pushNotificationView = PushNotificationView::where('push_notification_views_id',$id)->first();
+        $pushNotificationView = PushNotificationView::where('push_notification_views_id',$id)->where('user_id',Auth::id())->first();
         if($pushNotification && !$pushNotificationView){
             $pushNotification = PushNotificationView::create([
                 'push_notification_views_id'=>$id,

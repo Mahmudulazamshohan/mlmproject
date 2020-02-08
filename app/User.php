@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','referral_code'
+        'name', 'email', 'password','referral_code','is_blocked'
     ];
 
     /**
@@ -51,4 +51,5 @@ class User extends Authenticatable
     public function Profile(){
         return $this->hasOne(Profile::class,'user_id','id');
     }
+
 }

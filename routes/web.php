@@ -34,6 +34,8 @@ Route::get('/levels-and-earnings', 'LevelsEarningsController@levelsAndEarnings')
 Route::get('/story/{id}','HomeController@story')->name('story');
 Route::get('/view-notification/{id}','DashboardController@viewNotification')->name('view-notification');
 Route::get('/notifications','DashboardController@notifications')->name('notifications');
+Route::get('/blocked','HomeController@blocked')->name('blocked');
+
 Route::prefix('admin')->group(function (){
     Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/store-login', 'Auth\AdminLoginController@login')->name('admin.store-login');
@@ -53,7 +55,18 @@ Route::prefix('admin')->group(function (){
     Route::get('/manage-news', 'AdminController@manageNews')->name('admin.manage-news');
     Route::post('/manage-news', 'AdminController@storeManageNews')->name('admin.store.manage-news');
     Route::get('/edit-manage-news/{id}', 'AdminController@editManageNews')->name('admin.edit.manage-news');
+    Route::post('/edit-profile', 'AdminController@editProfile')->name('admin.edit-profile');
     Route::get('/delete-manage-news/{id}', 'AdminController@deleteManageNews')->name('admin.delete.manage-news');
+    Route::get('/manage-views', 'AdminController@manageViews')->name('admin.manage-views');
+    Route::get('/members/{id}', 'AdminController@members')->name('admin.members');
+    Route::get('/ban/{id}', 'AdminController@ban')->name('admin.members.ban');
+    Route::get('/ban/{id}', 'AdminController@ban')->name('admin.members.ban');
+    Route::get('/member-loans', 'AdminController@memberLoan')->name('admin.member-loans');
+    Route::get('/member-loan/{id}', 'AdminController@memberLoanDetails')->name('admin.details.member-loan');
+    Route::get('/member-loan', 'AdminController@storeMemberLoan')->name('admin.store.member-loan');
+    Route::get('/member-bonus/{id}', 'AdminController@memberBonusDetails')->name('admin.details.member-bonus');
+    Route::get('/member-bonus', 'AdminController@memberBonus')->name('admin.member-bonus');
+    Route::post('/member-bonus', 'AdminController@storeMemberBonus')->name('admin.store.member-bonus');
 });
 Route::get('/test', function () {
     echo \Illuminate\Support\Facades\Hash::make('123456').'';

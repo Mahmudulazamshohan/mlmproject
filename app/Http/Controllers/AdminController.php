@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use App\LevelSettings;
+use App\MemberBonus;
 use App\PushNotification;
+use App\Upline;
 use App\User;
 use App\Withdraw;
 use Illuminate\Http\Request;
@@ -172,8 +174,33 @@ class AdminController extends Controller
 
     public function editManageNews($id)
     {
-        $pushNotification = PushNotification::find($id);
-        return view('superadmin.edit-manage-news', compact('pushNotification'));
+        $user = User::find($id);
+        return view('superadmin.edit-manage-news', compact('user'));
+    }
+
+    public function editProfile(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+        $user = User::find($request->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if (isset($request->password)) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+        if ($user) {
+            return redirect()->back()
+                ->with('success', true)
+                ->with('message', 'Member Profile successfully updated');
+        } else {
+            return redirect()->back()
+                ->with('fail', true)
+                ->with('message', 'Member Profile faild to update , please try again');
+        }
+
     }
 
     public function deleteManageNews($id)
@@ -189,6 +216,121 @@ class AdminController extends Controller
                 ->with('fail', true)
                 ->with('message', 'Notification faild to delete , please try again');
         }
+    }
+
+    public function manageViews(Request $request)
+    {
+        if (isset($request->search)) {
+            $search = $request->search;
+            $users = User::where('name', 'like', "%$search%")
+                ->orWhere('email', 'like', "%$search%")
+                ->orWhere('referral_code', 'like', "%$search%")
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        } else {
+            $users = User::orderBy('id', 'desc')->paginate(10);
+        }
+
+
+        return view('superadmin.manage-views', compact('users'));
+    }
+
+    public function members($id)
+    {
+        $user = User::find($id);
+        $directLevels = Upline::where('level1', $id)->paginate(10);
+        return view('superadmin.members', compact('user', 'directLevels'));
+    }
+
+    public function ban($id)
+    {
+        $user = User::find($id);
+        $user->is_blocked = !$user->is_blocked;
+        $user->save();
+        if ($user) {
+            return redirect()->back()
+                ->with('success', true)
+                ->with('message', 'Member ban successfully');
+        } else {
+            return redirect()->back()
+                ->with('fail', true)
+                ->with('message', 'Member faild to ban , please try again');
+        }
+
+    }
+
+    public function memberLoan(Request $request)
+    {
+
+
+        if (isset($request->search)) {
+            $search = $request->search;
+            $users = User::where('name', 'like', "%$search%")
+                ->orWhere('email', 'like', "%$search%")
+                ->orWhere('referral_code', 'like', "%$search%")
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        } else {
+            $users = User::orderBy('id', 'desc')->paginate(10);
+        }
+
+        return view('superadmin.member-loan', compact('users'));
+    }
+
+    public function memberLoanDetails($id)
+    {
+        $user = User::find($id);
+        return view('superadmin.member-loan-details', compact('user'));
+    }
+
+    public function memberBonusDetails($id)
+    {
+        $user = User::find($id);
+        $memberBonuses = MemberBonus::where('user_id',$id)->paginate(30);
+        return view('superadmin.member-bonus-details', compact('user','memberBonuses'));
+
+    }
+
+    public function storeMemberBonus(Request $request)
+    {
+        $this->validate($request, [
+            'level' => 'required',
+            'bonus' => 'required'
+        ]);
+
+        $memberBonus = MemberBonus::create([
+            'user_id'=> $request->id,
+            'level'=> $request->level,
+            'bonus'=> $request->bonus
+        ]);
+        if ($memberBonus) {
+            return redirect()->back()
+                ->with('success', true)
+                ->with('message', 'Member Bonus created successfully');
+        } else {
+            return redirect()->back()
+                ->with('fail', true)
+                ->with('message', 'Member Bonus faild to create , please try again');
+        }
+    }
+
+    public function memberBonus(Request $request)
+    {
+        if (isset($request->search)) {
+            $search = $request->search;
+            $users = User::where('name', 'like', "%$search%")
+                ->orWhere('email', 'like', "%$search%")
+                ->orWhere('referral_code', 'like', "%$search%")
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        } else {
+            $users = User::orderBy('id', 'desc')->paginate(10);
+        }
+
+        return view('superadmin.member-bonus', compact('users'));
+    }
+    public function storeMemberLoan(Request $request){
+
     }
 
 

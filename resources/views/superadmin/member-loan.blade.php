@@ -15,7 +15,7 @@
                             <div class="card">
                                 <div class="card-header"
                                      style="background: #1DE9B6 !important;border: none;border-radius: 0;">
-                                    <h4 style="color: #fff !important;">Members </h4>
+                                    <h4 style="color: #fff !important;">Members Bonus </h4>
                                     <div class="card-header-right-icon" style="color: #fff;font-weight: bold;">
                                     </div>
                                 </div>
@@ -26,7 +26,7 @@
                                     <div class="col-lg-12">
 
                                         <div class="card ">
-                                            <form action="{{route('admin.manage-views',['search'=>1])}}" method="GET">
+                                            <form action="{{route('admin.member-loan')}}" method="GET">
                                                 <div class="row" style="margin-bottom: 10px">
                                                     <div class="col-md-6">
                                                         <input type="text" name="search" class="form-control input-md">
@@ -58,20 +58,10 @@
                                                             {{$user->referral_code}}
                                                         </td>
                                                         <td>
-                                                            <a href="{{route('admin.edit.manage-news',$user->id)}}" class="btn btn-info">
-                                                                Edit
-                                                            </a>
-                                                            <a href="{{route('admin.members',$user->id)}}" class="btn btn-default">
+                                                            <a href="{{route('admin.details.member-loan',$user->id)}}" class="btn btn-info">
                                                                 View
                                                             </a>
-                                                            <a href="{{route('admin.members.ban',$user->id)}}"
-                                                               class="btn  btn-danger ">
-                                                                @if(!$user->is_blocked)
-                                                                    Block
-                                                                @else
-                                                                    Unlock
-                                                                @endif
-                                                            </a>
+
                                                         </td>
                                                     </tr>
                                                 @endforeach

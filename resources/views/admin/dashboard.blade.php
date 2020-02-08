@@ -293,7 +293,7 @@
                                         <tr>
                                             <th>Level</th>
                                             <th>Direct Level</th>
-                                            <th>Load Accessible</th>
+                                            <th>Loan Accessible</th>
                                             <th>Achieve Date</th>
                                             <th>Release Date</th>
                                             <th>Payable by date</th>
@@ -307,13 +307,55 @@
                                         @if(auth()->user()->TotalUpline)
                                             @for($i=1;$i<=11;$i++)
                                                 <tr>
-                                                    <td>{{$i}}</td>
-                                                    <td>{{auth()->user()->TotalUpline->level2}}</td>
-                                                    <td>{{auth()->user()->TotalUpline->level3}}</td>
-                                                    <td>{{auth()->user()->TotalUpline->level4}}</td>
-                                                    <td>{{auth()->user()->TotalUpline->level5}}</td>
-                                                    <td>{{auth()->user()->TotalUpline->level6}}</td>
-                                                    <td>{{auth()->user()->TotalUpline->level7}}</td>
+                                                    <td>Level {{$i}}</td>
+                                                    @if(auth()->user()->TotalUpline)
+                                                        <td>{{auth()->user()->TotalUpline->{'level'.$i} }}</td>
+                                                    @else
+                                                        <td></td>
+                                                    @endif
+
+                                                    @if(auth()->user()->LevelIncome)
+                                                        <td>{{auth()->user()->LevelIncome->{'level'.$i} }}</td>
+                                                    @else
+                                                        <td></td>
+                                                    @endif
+
+                                                    @if(auth()->user()->TotalUpline)
+                                                        @if(auth()->user()->TotalUpline->{'level'.$i})
+                                                            <td>
+                                                                {{\Carbon\Carbon::parse(auth()->user()->TotalUpline->created_at)->format('Y-m-d')}}
+                                                            </td>
+                                                        @else
+                                                            <td>
+
+                                                            </td>
+                                                            @endif
+                                                    @else
+                                                        <td></td>
+                                                    @endif
+
+
+
+                                                    @if(auth()->user()->TotalUpline)
+                                                        @if(auth()->user()->TotalUpline->{'level'.$i})
+                                                            <td>
+                                                                {{\Carbon\Carbon::parse(auth()->user()->TotalUpline->created_at)->format('Y-m-d')}}
+                                                            </td>
+                                                        @else
+                                                            <td>
+
+                                                            </td>
+                                                        @endif
+                                                    @else
+                                                        <td></td>
+                                                    @endif
+                                                    @if(auth()->user()->LevelIncome)
+                                                        <td>{{\Carbon\Carbon::parse(auth()->user()->LevelIncome->created_at)->format('Y-m-d') }}</td>
+                                                    @else
+                                                        <td></td>
+                                                    @endif
+
+                                                    <td>1</td>
 
                                                 </tr>
                                             @endfor
