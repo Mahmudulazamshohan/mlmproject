@@ -15,51 +15,64 @@
                             <div class="card">
                                 <div class="card-header"
                                      style="background: #1DE9B6 !important;border: none;border-radius: 0;">
-                                    <h4 style="color: #fff !important;">Members Bonus </h4>
+                                    <h4 style="color: #fff !important;">Members Loan History </h4>
                                     <div class="card-header-right-icon" style="color: #fff;font-weight: bold;">
                                     </div>
                                 </div>
-
 
 
                                 <div class="row">
                                     <div class="col-lg-12">
 
                                         <div class="card ">
-                                            <form action="{{route('admin.member-loan')}}" method="GET">
-                                                <div class="row" style="margin-bottom: 10px">
-                                                    <div class="col-md-6">
-                                                        <input type="text" name="search" class="form-control input-md">
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <button type="submit" class="btn btn-info">
-                                                            <i class="fa fa-search"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
+
                                             <table class="table table-bordered text-center">
                                                 <thead>
                                                 <tr>
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Referral ID</th>
-                                                    <th>Action</th>
+                                                    <th>Amount</th>
+                                                    <th>Level</th>
+                                                    <th>Loan</th>
 
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($users as $user)
+                                                @foreach($withdraws as $withdraw)
                                                     <tr>
-                                                        <td>{{$user->name}}</td>
+                                                        <td>{{$withdraw->User->name}}</td>
                                                         <td>
-                                                            {{$user->email}}
-                                                        </td> <td>
-                                                            {{$user->referral_code}}
+                                                            {{$withdraw->User->email}}
                                                         </td>
                                                         <td>
-                                                            <a href="{{route('admin.details.member-loan',$user->id)}}" class="btn btn-info">
-                                                                View
+                                                            {{$withdraw->User->referral_code}}
+                                                        </td>
+                                                        <td>
+                                                            {{$withdraw->sum('amount')}}
+                                                        </td>
+                                                        <td>
+                                                            {{ucfirst($withdraw->level) }}
+                                                        </td>
+
+
+                                                        <td>
+                                                            @if(!$withdraw->LoanApprove)
+                                                            <a href="{{route('admin.details.member-loan',$withdraw->id)}}"
+                                                               class="btn btn-info">
+                                                                <i class="fa fa-check"></i>Approve
+
+                                                            </a>
+                                                            @else
+                                                                <a href="#"
+                                                                   class="btn btn-info">
+                                                                    <i class="fa fa-check"></i>Approved
+
+                                                                </a>
+                                                            @endif
+                                                            <a href="{{route('admin.member-loan-more',$withdraw->User->id)}}"
+                                                               class="btn btn-default" data-toggle="tooltip" title="Hooray!">
+                                                                <i class="fa fa-chevron-right"></i>
                                                             </a>
 
                                                         </td>
@@ -67,7 +80,7 @@
                                                 @endforeach
                                                 </tbody>
                                             </table>
-                                            {{$users->links()}}
+                                            {{$withdraws->links()}}
 
                                         </div>
                                     </div>
@@ -85,6 +98,8 @@
     <script type="text/javascript" src="{{asset('assets/js/nicEdit-latest.js')}}"></script>
 
     <script type="text/javascript">
-        new nicEditor().panelInstance('text-editor');
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 @endsection

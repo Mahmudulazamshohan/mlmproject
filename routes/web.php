@@ -31,15 +31,15 @@ Route::post('/profile', 'ProfileController@storeProfile')->name('store.profile')
 Route::get('/withdraw', 'WithdrawController@withdraw')->name('withdraw');
 Route::post('/withdraw', 'WithdrawController@storeWithdraw')->name('store.withdraw');
 Route::get('/levels-and-earnings', 'LevelsEarningsController@levelsAndEarnings')->name('levels-and-earnings');
-Route::get('/story/{id}','HomeController@story')->name('story');
-Route::get('/view-notification/{id}','DashboardController@viewNotification')->name('view-notification');
-Route::get('/notifications','DashboardController@notifications')->name('notifications');
-Route::get('/blocked','HomeController@blocked')->name('blocked');
+Route::get('/story/{id}', 'HomeController@story')->name('story');
+Route::get('/view-notification/{id}', 'DashboardController@viewNotification')->name('view-notification');
+Route::get('/notifications', 'DashboardController@notifications')->name('notifications');
+Route::get('/blocked', 'HomeController@blocked')->name('blocked');
 
-Route::prefix('admin')->group(function (){
-    Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
+Route::prefix('admin')->group(function () {
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/store-login', 'Auth\AdminLoginController@login')->name('admin.store-login');
-    Route::post('/logout', function (){
+    Route::post('/logout', function () {
         \Illuminate\Support\Facades\Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     })->name('admin.logout');
@@ -64,64 +64,35 @@ Route::prefix('admin')->group(function (){
     Route::get('/member-loans', 'AdminController@memberLoan')->name('admin.member-loans');
     Route::get('/member-loan/{id}', 'AdminController@memberLoanDetails')->name('admin.details.member-loan');
     Route::get('/member-loan', 'AdminController@storeMemberLoan')->name('admin.store.member-loan');
+    Route::post('/member-loan-approve', 'AdminController@memberLoanApprove')->name('admin.approve.member-loan');
+    Route::get('/member-loan-more/{id}', 'AdminController@memberLoanMore')->name('admin.member-loan-more');
     Route::get('/member-bonus/{id}', 'AdminController@memberBonusDetails')->name('admin.details.member-bonus');
     Route::get('/member-bonus', 'AdminController@memberBonus')->name('admin.member-bonus');
     Route::post('/member-bonus', 'AdminController@storeMemberBonus')->name('admin.store.member-bonus');
 });
 Route::get('/test', function () {
-    echo \Illuminate\Support\Facades\Hash::make('123456').'';
-    for ($i=1;$i<=11;$i++){echo $i;}
-//    $user = User::find(2);
-//    if (isset($user)) {
-//        $refferalUser = User::where('referral_code', $user->referral_code)->first();
-//        if ($refferalUser) {
-//            $refferalUpline = Upline::find($refferalUser->id);
-//            $upline = new Upline();
-//            $upline->user_id = $user->id;
-//            $upline->level1 = $refferalUser->id;
-//            if ($refferalUpline) {
-//                if ($refferalUpline->level1) {
-//                    $upline->level2 = $refferalUpline->level1;
-//                    $totalUpline = TotalUpline::where('user_id',$refferalUpline->level1);
-//                    $users = $totalUpline->first();
-//                    $level = 'level2';
-//                    $totalUpline->update([
-//                        $level=>$users->{$level} + 1
-//                    ]);
-//                }
-//                if ($refferalUpline->level2) {
-//                    $upline->level3 = $refferalUpline->level2;
-//                }
-//                if ($refferalUpline->level3) {
-//                    $upline->level4 = $refferalUpline->level3;
-//                }
-//                if ($refferalUpline->level4) {
-//                    $upline->level5 = $refferalUpline->level4;
-//                }
-//                if ($refferalUpline->level5) {
-//                    $upline->level6 = $refferalUpline->level5;
-//                }
-//                if ($refferalUpline->level6) {
-//                    $upline->level7 = $refferalUpline->level6;
-//                }
-//                if ($refferalUpline->level7) {
-//                    $upline->level8 = $refferalUpline->level7;
-//                }
-//                if ($refferalUpline->level8) {
-//                    $upline->level9 = $refferalUpline->level8;
-//                }
-//                if ($refferalUpline->level9) {
-//                    $upline->level10 = $refferalUpline->level9;
-//                }
-//                if ($refferalUpline->level10) {
-//                    $upline->level11 = $refferalUpline->level10;
-//                }
-//
-//
-//            }
-//            $upline->save();
-//
-//        }
-//
-//    }
+
+    function levelReturn($i,$val){
+        $ranger = [20,40,60,80,100,120,140,160,180,200,10000000000000000];
+        return $ranger[$i-1] > $val ;
+    }
+    $user = User::where('referral_code', 'EkGN0g')->first();
+
+    $totalUpline = TotalUpline::where('user_id',$user->id)->first();
+    $totalUplineSave = TotalUpline::find($totalUpline->id);
+    for ($i=1;$i<12;$i++){
+        $ranger = [20,40,60,80,100,120,140,160,180,200,10000000000000000];
+        if( levelReturn($i,$totalUpline->{'level'.$i})){
+            if($totalUplineSave->{'level'.$i} == 0 && $i!=1){
+                $totalUplineSave->{'level'.$i} += $totalUplineSave->{'level'.($i - 1)} + 1;
+            }else{
+                $totalUplineSave->{'level'.$i} += 1;
+            }
+
+            $totalUplineSave->save();
+            echo 'level'.$i;
+            break;
+        }
+    }
+
 });

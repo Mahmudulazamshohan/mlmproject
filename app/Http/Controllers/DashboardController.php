@@ -10,6 +10,7 @@ use App\PushNotification;
 use App\PushNotificationView;
 use App\Upline;
 use App\Withdraw;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -51,8 +52,10 @@ class DashboardController extends Controller
         $withdrawPendingFees = $withdraws->where('status',0)->sum('fees');
         $totalWithdrawFees = $withdraws->where('status',1)->sum('fees');
         $uplines = Upline::where('level1',Auth::id())->paginate(10);
+
+        $today = Upline::where('level1',Auth::id())->where('created_at', '>=', Carbon::today()->toDateString())->count();
         return view('admin.dashboard', compact('totalAmount','todayAmount','totalWithdraw','withdrawPending','withdrawPendingFees'
-,'totalWithdrawFees','uplines'));
+,'totalWithdrawFees','uplines','withdraws','today'));
     }
 
     public function refferalLink()

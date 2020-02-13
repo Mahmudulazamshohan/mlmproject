@@ -43,7 +43,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label
-                                                            class="col-sm-2 control-label">Refferal</label>
+                                                            class="col-sm-2 control-label">Referral</label>
                                                         <div class="col-sm-10">
                                                             <input type="number" class="form-control input-sm" value="{{$levelSettings->refferal}}"
                                                                    name="refferal">

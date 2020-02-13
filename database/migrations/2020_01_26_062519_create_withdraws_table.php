@@ -18,6 +18,7 @@ class CreateWithdrawsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('account');
             $table->string('payment_method');
+            $table->string('level');
             $table->bigInteger('amount')->default(0);
             $table->bigInteger('fees')->default(0);
             $table->boolean('status')->default(0);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use App\LevelSettings;
+use App\LoanApprove;
 use App\MemberBonus;
 use App\PushNotification;
 use App\Upline;
@@ -25,6 +26,7 @@ class AdminController extends Controller
         $users = User::all();
         $withdraws = Withdraw::all();
         $today = User::where('created_at', 'like', "%" . date('Y-m-d') . "%")->count();
+
         return view('superadmin.dashboard', compact('users', 'withdraws', 'today'));
     }
 
@@ -261,33 +263,21 @@ class AdminController extends Controller
 
     public function memberLoan(Request $request)
     {
-
-
-        if (isset($request->search)) {
-            $search = $request->search;
-            $users = User::where('name', 'like', "%$search%")
-                ->orWhere('email', 'like', "%$search%")
-                ->orWhere('referral_code', 'like', "%$search%")
-                ->orderBy('id', 'desc')
-                ->paginate(10);
-        } else {
-            $users = User::orderBy('id', 'desc')->paginate(10);
-        }
-
-        return view('superadmin.member-loan', compact('users'));
+        $withdraws = Withdraw::paginate(100);
+        return view('superadmin.member-loan', compact('withdraws'));
     }
 
     public function memberLoanDetails($id)
     {
-        $user = User::find($id);
-        return view('superadmin.member-loan-details', compact('user'));
+        $withdraw = Withdraw::find($id);
+        return view('superadmin.member-loan-details', compact('withdraw'));
     }
 
     public function memberBonusDetails($id)
     {
         $user = User::find($id);
-        $memberBonuses = MemberBonus::where('user_id',$id)->paginate(30);
-        return view('superadmin.member-bonus-details', compact('user','memberBonuses'));
+        $memberBonuses = MemberBonus::where('user_id', $id)->paginate(30);
+        return view('superadmin.member-bonus-details', compact('user', 'memberBonuses'));
 
     }
 
@@ -299,9 +289,9 @@ class AdminController extends Controller
         ]);
 
         $memberBonus = MemberBonus::create([
-            'user_id'=> $request->id,
-            'level'=> $request->level,
-            'bonus'=> $request->bonus
+            'user_id' => $request->id,
+            'level' => $request->level,
+            'bonus' => $request->bonus
         ]);
         if ($memberBonus) {
             return redirect()->back()
@@ -329,8 +319,43 @@ class AdminController extends Controller
 
         return view('superadmin.member-bonus', compact('users'));
     }
-    public function storeMemberLoan(Request $request){
 
+    public function memberLoanApprove(Request $request)
+    {
+        $withdraw = Withdraw::find($request->id);
+        $withdraw->status = $request->approve;
+        $withdraw->save();
+        if ($withdraw) {
+            $loanApprove = LoanApprove::create(
+                [
+                    'withdraw_id' => $withdraw->id,
+                    'achieve_date' => $request->achieve_date,
+                    'release_date' => $request->release_date,
+                    'payable_by_date' => $request->payable_by_date
+                ]
+            );
+            if ($loanApprove) {
+                return redirect()->route('admin.member-loans')
+                    ->with('success', true)
+                    ->with('message', ' Loan Approved');
+            } else {
+                return redirect()->route('admin.member-loans')
+                    ->with('fail', true)
+                    ->with('message', 'Loan Failed , please try again');
+            }
+
+        } else {
+
+            return redirect()->route('admin.member-loans')
+                ->with('fail', true)
+                ->with('message', 'Loan Failed , please try again');
+
+        }
+    }
+    public function memberLoanMore($id){
+        $user = User::find($id);
+        $withdraws =Withdraw::where('user_id',$id)->paginate(100);
+        return view('superadmin.member-loan-more',compact('user','withdraws'));
     }
 
 

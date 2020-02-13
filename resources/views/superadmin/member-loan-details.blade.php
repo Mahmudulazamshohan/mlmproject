@@ -25,36 +25,22 @@
                                     <div class="col-lg-12">
 
                                         <div class="card ">
-                                            <form action="{{route('admin.member-loan')}}" method="GET">
+                                            <form action="{{route('admin.approve.member-loan')}}" method="POST">
+                                                @csrf
                                                 <div class="row" style="margin-bottom: 10px">
                                                     <div class="col-md-3">
-                                                        <label for="">
-                                                            Level
-                                                        </label>
-                                                        <select class="form-control input-sm">
-                                                            <option value="level1">Level 1</option>
-                                                            <option value="level2">Level 2</option>
-                                                            <option value="level3">Level 3</option>
-                                                            <option value="level4">Level 4</option>
-                                                            <option value="level5">Level 5</option>
-                                                            <option value="level6">Level 6</option>
-                                                            <option value="level7">Level 7</option>
-                                                            <option value="level8">Level 8</option>
-                                                            <option value="level9">Level 9</option>
-                                                            <option value="level10">Level 10</option>
-                                                            <option value="level12">Level 11</option>
-                                                        </select>
+                                                        <b>Loan Accessible : {{$withdraw->amount}} (Ksh)</b>
+                                                        <b>Level : {{ucfirst($withdraw->level)}}</b>
+
                                                     </div>
-
-
-
                                                 </div>
+                                                <input type="hidden" name="id" value="{{$withdraw->id}}">
                                                 <div class="row" style="margin-bottom: 20px">
                                                     <div class="col-md-3">
                                                         <label for="">
                                                             Achieve Date
                                                         </label>
-                                                        <input type="date" class="form-control input-sm" required>
+                                                        <input type="date" class="form-control input-sm" required name="achieve_date">
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-bottom: 20px">
@@ -62,7 +48,7 @@
                                                         <label for="">
                                                             Release Date
                                                         </label>
-                                                        <input type="date" class="form-control input-sm" required>
+                                                        <input type="date" class="form-control input-sm" required name="release_date">
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-bottom: 20px">
@@ -70,54 +56,30 @@
                                                         <label for="">
                                                             Payable by Date
                                                         </label>
-                                                        <input type="date" class="form-control input-sm" required>
+                                                        <input type="date" class="form-control input-sm" required name="payable_by_date">
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-bottom: 20px">
                                                     <div class="col-md-3">
                                                         <label for="">
-                                                            Loan Accessible
+                                                            Withdraw Approved
                                                         </label>
-                                                        <input type="number" class="form-control input-sm" min="0" required>
+                                                        <br>
+                                                        <div style="padding-left: 20px;">
+                                                            <input type="radio" name="approve" value="1">
+                                                            Approved<br>
+                                                            <input type="radio" name="approve" value="0" checked>Reject
+                                                            <br>
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <button class="btn btn-info " style="margin-bottom: 10px;">
-                                                    Create
+                                                    Submit
                                                 </button>
                                             </form>
 
-                                            <table class="table table-bordered text-center">
-                                                <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Referral Id</th>
-                                                    <th>Level</th>
-                                                    <th>Bonus ( Ksh )</th>
 
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                <tr>
-                                                    <td>{{$user->name}}</td>
-                                                    <td>
-                                                        {{$user->email}}
-                                                    </td>
-                                                    <td>
-                                                        {{$user->referral_code}}
-                                                    </td>
-                                                    <td>
-                                                        {{$user->referral_code}}
-                                                    </td>
-                                                    <td>
-
-                                                        {{$user->referral_code}}
-                                                    </td>
-                                                </tr>
-
-                                                </tbody>
-                                            </table>
 
 
                                         </div>

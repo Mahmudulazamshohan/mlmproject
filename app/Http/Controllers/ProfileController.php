@@ -25,10 +25,14 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'new_password' => 'nullable|min:6',
-            'image' => 'mimes:jpg,png,jpeg,gif'
+            'image' => 'mimes:jpg,png,jpeg,gif',
+            'phone'=>'required',
+            'country'=>'required',
         ]);
         $user = User::find(Auth::id());
         $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->country = $request->country;
         if (isset($request->new_password)) {
             $user->password = Hash::make($request->new_password);
         }

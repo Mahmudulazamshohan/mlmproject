@@ -17,4 +17,8 @@ class Withdraw extends Model
     public function User(){
         return $this->hasOne(User::class,'id','user_id');
     }
+    public function LoanApprove(){
+        return $this->hasOne(LoanApprove::class,'withdraw_id','id');
+
+    }
 }

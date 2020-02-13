@@ -32,10 +32,10 @@
                                                             Payout Method
                                                         </label>
                                                         <div class="col-sm-10">
-                                                            <input type="radio" name="payment_method" value="paypal"
+                                                            <input type="radio" name="payment_method" value=mpesa"
                                                                    checked>
                                                             <img
-                                                                src="{{asset('assets/images/paypal-logo.png')}}" alt=""
+                                                                src="{{asset('assets/images/mpesa.png')}}" alt=""
                                                                 style="width:70px;height: 70px;">
                                                             <input type="radio" name="payment_method"
                                                                    value="bank_transfer"> <img
@@ -49,9 +49,10 @@
                                                          </span>
                                                         @enderror
                                                     </div>
+
                                                     <div class="form-group">
                                                         <label
-                                                            class="col-sm-2 control-label">Account</label>
+                                                            class="col-sm-2 control-label">Account /Phone Number</label>
                                                         <div class="col-sm-10">
                                                             <input type="text" class="form-control input-sm" value=""
                                                                    name="account" placeholder="Account Email Address"

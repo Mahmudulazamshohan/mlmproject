@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','referral_code','is_blocked'
+        'name', 'email', 'password','referral_code','is_blocked','phone','country'
     ];
 
     /**
@@ -50,6 +50,10 @@ class User extends Authenticatable
     }
     public function Profile(){
         return $this->hasOne(Profile::class,'user_id','id');
+    }
+    public function Withdraw(){
+        return $this->hasMany(Withdraw::class,'user_id','id');
+
     }
 
 }

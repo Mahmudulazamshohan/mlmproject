@@ -22,8 +22,9 @@
                                             <th>
                                                 Account
                                             </th>
+
                                             <th>
-                                                Amount (Ksh)
+                                                Loan (Ksh)
                                             </th>
                                             <th>
                                                 Fee(Ksh) (7%)
