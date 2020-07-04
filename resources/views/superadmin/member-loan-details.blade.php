@@ -25,61 +25,33 @@
                                     <div class="col-lg-12">
 
                                         <div class="card ">
-                                            <form action="{{route('admin.approve.member-loan')}}" method="POST">
-                                                @csrf
-                                                <div class="row" style="margin-bottom: 10px">
-                                                    <div class="col-md-3">
-                                                        <b>Loan Accessible : {{$withdraw->amount}} (Ksh)</b>
-                                                        <b>Level : {{ucfirst($withdraw->level)}}</b>
-
-                                                    </div>
-                                                </div>
-                                                <input type="hidden" name="id" value="{{$withdraw->id}}">
-                                                <div class="row" style="margin-bottom: 20px">
-                                                    <div class="col-md-3">
-                                                        <label for="">
-                                                            Achieve Date
-                                                        </label>
-                                                        <input type="date" class="form-control input-sm" required name="achieve_date">
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="margin-bottom: 20px">
-                                                    <div class="col-md-3">
-                                                        <label for="">
-                                                            Release Date
-                                                        </label>
-                                                        <input type="date" class="form-control input-sm" required name="release_date">
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="margin-bottom: 20px">
-                                                    <div class="col-md-3">
-                                                        <label for="">
-                                                            Payable by Date
-                                                        </label>
-                                                        <input type="date" class="form-control input-sm" required name="payable_by_date">
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="margin-bottom: 20px">
-                                                    <div class="col-md-3">
-                                                        <label for="">
-                                                            Withdraw Approved
-                                                        </label>
-                                                        <br>
-                                                        <div style="padding-left: 20px;">
-                                                            <input type="radio" name="approve" value="1">
-                                                            Approved<br>
-                                                            <input type="radio" name="approve" value="0" checked>Reject
-                                                            <br>
+                                            @if($memberLoan)
+                                                <form action="{{route('admin.approve.member-loan')}}" method="POST">
+                                                    @csrf
+                                                    <div class="row" style="margin-bottom: 10px">
+                                                        <div class="col-md-3">
+                                                            <b>Name : {{$memberLoan->User->name}} (Ksh)</b><br>
+                                                            <b>Referral : {{$memberLoan->User->refferal_code}} (Ksh)</b><br>
+                                                            <b>Loan : {{$memberLoan->amount}} (Ksh)</b><br>
+                                                            <b>interest : {{$memberLoan->interest}} (Ksh)</b><br>
+                                                            <b>Total Payable
+                                                                Amount: {{$memberLoan->amount+$memberLoan->interest}}
+                                                                (Ksh)</b>
 
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <button class="btn btn-info " style="margin-bottom: 10px;">
-                                                    Submit
-                                                </button>
-                                            </form>
-
-
+                                                    <input type="hidden" name="id" value="{{$memberLoan->id}}">
+                                                    <input type="checkbox" name="approved"
+                                                           @if($memberLoan->approved) checked @endif "> Approve Loan<br>
+                                                    <input type="checkbox" name="paid"
+                                                           @if($memberLoan->paid) checked @endif> Amount Paid
+                                                    Manually <br>
+                                                    <br>
+                                                    <button class="btn btn-info " style="margin-bottom: 10px;">
+                                                        Submit
+                                                    </button>
+                                                </form>
+                                            @endif
 
 
                                         </div>

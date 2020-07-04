@@ -9,7 +9,7 @@
                 <li><a href="{{route('admin.manage-news')}}"><i class="ti-agenda"></i> Manage News</a></li>
                 <li><a href="{{route('admin.withdraw-request')}}"><i class="ti-wallet"></i> Withdraw History</a></li>
                 <li><a href="{{route('admin.member-loans')}}"><i class="ti-wallet"></i> Members Loan</a></li>
-                <li><a href="{{route('admin.member-bonus')}}"><i class="ti-money"></i> Members Bonus</a></li>
+{{--                <li><a href="{{route('admin.member-bonus')}}"><i class="ti-money"></i> Members Bonus</a></li>--}}
                 <li><a href="{{route('admin.level-settings')}}"><i class="ti-money"></i> Level Settings</a></li>
 
                 <li><a onclick="event.preventDefault();

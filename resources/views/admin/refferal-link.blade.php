@@ -20,18 +20,36 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-10">
                                         <div class="card p-10">
                                             <b style="color: #555;">Direct Referral Link</b>
-                                            <input type="text" class="form-control mx-2" style="color: #6A55FF;font-weight: bold;background: #eee;" value="{{url('register?refferal_id='.auth()->user()->referral_code)}}">
-                                        </div>
+                                            <div style="display: flex;flex-flow: row;">
+                                                <input type="text" class="form-control mx-2" id="refferal-input" style="color: #6A55FF;font-weight: bold;background: #eee;border-radius: 4px 0px 0px 4px !important;" value="{{url('register?refferal_id='.auth()->user()->referral_code)}}">
+                                                <button class="btn btn-info" id="refferal-btn"  style="border-radius: 0px 4px 4px 0px !important;">
+                                                    <i class="fa fa-copy">
+
+                                                    </i>
+                                                </button>
+                                            </div>
+                                           </div>
+                                    </div>
+                                    <div class="col-lg-2">
+
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-10">
                                         <div class="card p-10">
                                             <b style="color: #555;">Business Story(Referral Link)</b>
-                                            <input type="text" class="form-control mx-2" style="color: #6A55FF;font-weight: bold;background: #eee;" value="{{route('story',auth()->user()->referral_code)}}">
+                                            <div style="display: flex;flex-flow: row;">
+
+                                                <input type="text" class="form-control mx-2" id="business-input" style="color: #6A55FF;font-weight: bold;background: #eee;border-radius: 4px 0px 0px 4px !important; " value="{{route('story',auth()->user()->referral_code)}}">
+                                                <button class="btn btn-info" id="business-btn" style="border-radius: 0px 4px 4px 0px !important;">
+                                                    <i class="fa fa-copy">
+
+                                                    </i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -67,9 +85,31 @@
             </div>
         </div>
     </div>
+    <script>
+        var refferalbtn = document.getElementById('refferal-btn')
+        refferalbtn.addEventListener('click',function () {
+            var copyText = document.getElementById("refferal-input");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            alert('Text Copied');
+        });
+        var businessbtn = document.getElementById('business-btn')
+        businessbtn.addEventListener('click',function () {
+            var copyText = document.getElementById("business-input");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            alert('Text Copied');
+
+        });
+
+
+    </script>
     <script type="text/javascript" src="{{asset('assets/js/nicEdit-latest.js')}}"></script>
 
     <script type="text/javascript">
+
         new nicEditor().panelInstance('text-editor');
     </script>
 @endsection

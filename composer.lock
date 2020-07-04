@@ -4,8 +4,42 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "81a045148781596c3ffad374ba3e27bf",
+    "content-hash": "64c2ef010fb075f906d74099a45f73d0",
     "packages": [
+        {
+            "name": "bixbyte/jambopay",
+            "version": "dev-composer",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/ianmin2/jp-agency_php.git",
+                "reference": "91c4f60c7154705a0773694feb2861601b88b1c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/ianmin2/jp-agency_php/get/91c4f60c7154705a0773694feb2861601b88b1c0.zip",
+                "reference": "91c4f60c7154705a0773694feb2861601b88b1c0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3 || ^7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "": "modules/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Ian Innocent",
+                    "email": "ianmin2@live.com"
+                }
+            ],
+            "description": "An SDK package for intergration with the JamboPay payment gateway.",
+            "homepage": "https://bitbucket.org/ianmin2/jp-agency_php",
+            "time": "2018-03-27T06:20:00+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "v0.1.1",
@@ -5150,7 +5184,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "bixbyte/jambopay": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

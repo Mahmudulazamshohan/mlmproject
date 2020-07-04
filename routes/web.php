@@ -11,9 +11,12 @@
 |
 */
 
+use App\LevelIncome;
 use App\TotalUpline;
 use App\Upline;
 use App\User;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     //returuniqidn ();
@@ -34,7 +37,10 @@ Route::get('/levels-and-earnings', 'LevelsEarningsController@levelsAndEarnings')
 Route::get('/story/{id}', 'HomeController@story')->name('story');
 Route::get('/view-notification/{id}', 'DashboardController@viewNotification')->name('view-notification');
 Route::get('/notifications', 'DashboardController@notifications')->name('notifications');
+Route::get('/loan', 'DashboardController@loan')->name('loan');
+Route::post('/loan', 'DashboardController@storeLoan')->name('store.loan');
 Route::get('/blocked', 'HomeController@blocked')->name('blocked');
+Route::get('/confirm', 'HomeController@confirm')->name('confirm');
 
 Route::prefix('admin')->group(function () {
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
@@ -69,30 +75,46 @@ Route::prefix('admin')->group(function () {
     Route::get('/member-bonus/{id}', 'AdminController@memberBonusDetails')->name('admin.details.member-bonus');
     Route::get('/member-bonus', 'AdminController@memberBonus')->name('admin.member-bonus');
     Route::post('/member-bonus', 'AdminController@storeMemberBonus')->name('admin.store.member-bonus');
+    Route::get('/active/{id}', 'AdminController@active')->name('admin.active');
 });
-Route::get('/test', function () {
+Route::get('/result', function (\Illuminate\Support\Facades\Request $request) {
+    dd($request);
+})->name('result');
+Route::get('/test', function (\Illuminate\Http\Request $request) {
 
-    function levelReturn($i,$val){
-        $ranger = [20,40,60,80,100,120,140,160,180,200,10000000000000000];
-        return $ranger[$i-1] > $val ;
-    }
-    $user = User::where('referral_code', 'EkGN0g')->first();
-
-    $totalUpline = TotalUpline::where('user_id',$user->id)->first();
-    $totalUplineSave = TotalUpline::find($totalUpline->id);
-    for ($i=1;$i<12;$i++){
-        $ranger = [20,40,60,80,100,120,140,160,180,200,10000000000000000];
-        if( levelReturn($i,$totalUpline->{'level'.$i})){
-            if($totalUplineSave->{'level'.$i} == 0 && $i!=1){
-                $totalUplineSave->{'level'.$i} += $totalUplineSave->{'level'.($i - 1)} + 1;
-            }else{
-                $totalUplineSave->{'level'.$i} += 1;
-            }
-
-            $totalUplineSave->save();
-            echo 'level'.$i;
-            break;
-        }
-    }
+    $qa = 'a';
+    $user = User::whereHas('profile', function (\Illuminate\Database\Eloquent\Builder $query) {
+        $query->where('image', 'like', '%jpg%');
+    })->toSql();
+    dd($user);
+//    $ch = curl_init();
+//    $fields = [
+//        'jp_item_type' => env('jp_item_type'),
+//        'jp_item_name' => env('jp_item_name'),
+//        'order_id' => time(),
+//        'jp_business' => 'salonquip.co.ke@gmail.com',
+//        'jp_amount_1' => '3500',
+//        'jp_payee' => 'mahmudulazam@gmail.com',
+//        'jp_shipping' => env('jp_shipping'),
+//        'jp_rurl' => route('result'),
+//        'jp_furl' => route('result'),
+//        'jp_curl' => route('result'),
+//
+//    ];
+//    curl_setopt($ch, CURLOPT_URL, "https://www.jambopay.com/JPExpress.aspx");
+//    curl_setopt($ch, CURLOPT_POST, 1);
+//    curl_setopt($ch, CURLOPT_POSTFIELDS,$fields);
+//
+//
+//    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//
+//    $server_output = curl_exec($ch);
+//
+//    curl_close($ch);
+//   dd($server_output);
+//    if ($server_output == "OK") {
+//
+//    } else {
+//    }
 
 });

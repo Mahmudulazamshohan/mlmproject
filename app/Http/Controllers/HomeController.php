@@ -46,4 +46,7 @@ class HomeController extends Controller
     public function blocked(){
         return view('admin.block');
     }
+    public function confirm(){
+        return view('admin.confirm');
+    }
 }

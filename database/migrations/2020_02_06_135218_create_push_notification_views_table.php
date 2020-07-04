@@ -18,13 +18,13 @@ class CreatePushNotificationViewsTable extends Migration
             $table->unsignedBigInteger('push_notification_views_id');
             $table->unsignedBigInteger('user_id');
 
-            $table->foreign('push_notification_views_id')
-                ->references('id')->on('push_notification_views')
-                ->onDelete('cascade');
-
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+//            $table->foreign('push_notification_views_id')
+//                ->references('id')->on('push_notification_views')
+//                ->onDelete('cascade');
+//
+//            $table->foreign('user_id')
+//                ->references('id')->on('users')
+//                ->onDelete('cascade');
             $table->timestamps();
         });
     }

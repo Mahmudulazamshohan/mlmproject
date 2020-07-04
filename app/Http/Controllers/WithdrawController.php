@@ -15,43 +15,47 @@ class WithdrawController extends Controller
 
     public function __construct(LevelSettings $levelSettings)
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'block','confirmation']);
         $this->levelSettings = $levelSettings->first();
     }
 
     public function withdraw()
     {
-        $totalAmount = 0;
         $todayAmount = 0;
-        $totalWithdraw = 0;
-        $withdrawPending = 0;
         $levelIncomes = LevelIncome::where('user_id', Auth::id())->get();
         $todayLevelIncomes = LevelIncome::where('user_id', Auth::id())->where('created_at', 'like', '%' . date('Y-m-d') . '%')->get();
         $withdraws = Withdraw::where('user_id', Auth::id())->get();
 
-        //$joinIncome = JoinIncome::where('user_id', Auth::id())->first();
-        foreach ($levelIncomes as $levelIncome) {
-            $totalAmount += $levelIncome->level1 + $levelIncome->level2 + $levelIncome->level3 + $levelIncome->level4 + $levelIncome->level5 + $levelIncome->level6 + $levelIncome->level7 + $levelIncome->level8 + $levelIncome->level9 + $levelIncome->level10 + $levelIncome->level11;
+        $totalAmount = 0;
+        $leveIncome = LevelIncome::where('user_id', Auth::id())->first();
+
+        if ($leveIncome) {
+            if ($leveIncome->level2 >= 50000) {
+                $totalAmount += 2000;
+            }
+            if ($leveIncome->level2 >= 250000) {
+                $totalAmount += 6000;
+            }
+            if ($leveIncome->level2 >= 450000) {
+                $totalAmount += 12000;
+            }
         }
+
 
         foreach ($todayLevelIncomes as $todayLevelIncome) {
             $todayAmount += $todayLevelIncome->level1 + $todayLevelIncome->level2 + $todayLevelIncome->level3 + $todayLevelIncome->level4 + $todayLevelIncome->level5 + $todayLevelIncome->level6 + $todayLevelIncome->level7 + $todayLevelIncome->level8 + $todayLevelIncome->level9 + $todayLevelIncome->level10 + $todayLevelIncome->level11;
         }
-//        foreach ($withdraws->where('status',1)->values() as $withdraw){
-//            $totalWithdraw += $withdraw->amount;
-//        }
-//        foreach ($withdraws->where('status',0)->values() as $withdraw){
-//            $withdrawPending += $withdraw->amount;
-//        }
+
         $withdrawPending = $withdraws->where('status', 0)->sum('amount');
         $totalWithdraw = $withdraws->where('status', 1)->sum('amount');
         $withdrawPendingFees = $withdraws->where('status', 0)->sum('fees');
         $totalWithdrawFees = $withdraws->where('status', 1)->sum('fees');
 
         $withdraws = Withdraw::where('user_id', Auth::id())->paginate(10);
+
         return view('admin.withdraw', compact('withdraws', 'totalAmount', 'todayAmount', 'totalWithdraw', 'withdrawPending', 'withdrawPendingFees'
-            , 'totalWithdrawFees'));
-    }
+, 'totalWithdrawFees'));
+}
 
     public function storeWithdraw(Request $request)
     {
@@ -69,7 +73,7 @@ class WithdrawController extends Controller
         $withdraw->fees = $fees;
 
         if ($this->levelSettings) {
-            if ($request->amount > $this->levelSettings->minimum_withdraw && $request->amount <= $this->totalIncomeAmount()) {
+            if ($request->amount <= $this->totalIncomeAmount()) {
                 $withdraw->save();
                 if ($withdraw) {
                     return redirect()->back()
@@ -149,27 +153,21 @@ class WithdrawController extends Controller
      */
     private function totalIncomeAmount()
     {
-        $joinIncome = JoinIncome::where('user_id', Auth::id())->first();
-        $joinAmount = 0;
-        if ($joinIncome) {
-            $joinAmount = $joinIncome->amount;
-        }
+        $total = 0;
+        $leveIncome = LevelIncome::where('user_id', Auth::id())->first();
 
-        $levelIncome = LevelIncome::where('user_id', Auth::id())->first();
-        $totalLevelIncome = 0;
-        if ($levelIncome) {
-            for ($i = 1; $i <= 11; $i++) {
-                $totalLevelIncome += $levelIncome->{'level' . $i};
+        if ($leveIncome) {
+            if ($leveIncome->level2 >= 50000) {
+                $total += 2000;
             }
-
+            if ($leveIncome->level2 >= 250000) {
+                $total += 6000;
+            }
+            if ($leveIncome->level2 >= 450000) {
+                $total += 12000;
+            }
         }
-        $withdrawAmount = 0;
-        $withdraws = Withdraw::where('user_id', Auth::id())->get();
-        foreach ($withdraws as $withdraw) {
-            $withdrawAmount += ($withdraw->amount + $withdraw->fees);
-        }
-        $total =  $totalLevelIncome - $withdrawAmount;
-
-        return $total;
+        $fees = ($total /100 ) * 7;
+        return $total + $fees;
     }
 }

@@ -64,6 +64,13 @@
                                                             <a href="{{route('admin.members',$user->id)}}" class="btn btn-default">
                                                                 View
                                                             </a>
+                                                            @if(!$user->active)
+                                                                <a href="{{route('admin.active',$user->id)}}" class="btn btn-success">
+                                                                    Active
+                                                                </a>
+
+                                                            @endif
+
                                                             <a href="{{route('admin.members.ban',$user->id)}}"
                                                                class="btn  btn-danger ">
                                                                 @if(!$user->is_blocked)

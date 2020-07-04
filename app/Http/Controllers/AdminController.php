@@ -3,22 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\LevelIncome;
 use App\LevelSettings;
 use App\LoanApprove;
 use App\MemberBonus;
+use App\MemberLoan;
 use App\PushNotification;
+use App\TotalUpline;
 use App\Upline;
 use App\User;
 use App\Withdraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    protected $levelSetting = null;
     public function __construct()
     {
         $this->middleware('auth:admin');
+        $this->levelSetting = LevelSettings::first();
     }
 
     public function dashboard()
@@ -152,6 +158,7 @@ class AdminController extends Controller
     public function storeManageNews(Request $request)
     {
         $this->validate($request, [
+            'title'=>'required',
             'text' => 'required'
         ]);
         $pushNotification = PushNotification::updateOrCreate(
@@ -159,6 +166,7 @@ class AdminController extends Controller
                 'id' => $request->id
             ],
             [
+                'title'=>$request->title,
                 'text' => $request->text
             ]
         );
@@ -263,14 +271,14 @@ class AdminController extends Controller
 
     public function memberLoan(Request $request)
     {
-        $withdraws = Withdraw::paginate(100);
-        return view('superadmin.member-loan', compact('withdraws'));
+        $memberLoans = MemberLoan::paginate(100);
+        return view('superadmin.member-loan', compact('memberLoans'));
     }
 
     public function memberLoanDetails($id)
     {
-        $withdraw = Withdraw::find($id);
-        return view('superadmin.member-loan-details', compact('withdraw'));
+        $memberLoan = MemberLoan::find($id);
+        return view('superadmin.member-loan-details', compact('memberLoan'));
     }
 
     public function memberBonusDetails($id)
@@ -322,27 +330,17 @@ class AdminController extends Controller
 
     public function memberLoanApprove(Request $request)
     {
-        $withdraw = Withdraw::find($request->id);
-        $withdraw->status = $request->approve;
-        $withdraw->save();
-        if ($withdraw) {
-            $loanApprove = LoanApprove::create(
-                [
-                    'withdraw_id' => $withdraw->id,
-                    'achieve_date' => $request->achieve_date,
-                    'release_date' => $request->release_date,
-                    'payable_by_date' => $request->payable_by_date
-                ]
-            );
-            if ($loanApprove) {
-                return redirect()->route('admin.member-loans')
-                    ->with('success', true)
-                    ->with('message', ' Loan Approved');
-            } else {
-                return redirect()->route('admin.member-loans')
-                    ->with('fail', true)
-                    ->with('message', 'Loan Failed , please try again');
-            }
+        $memberLoan = MemberLoan::find($request->id);
+        $memberLoan->approved = $request->approved == 'on' ? 1: 0;
+        $memberLoan->paid = $request->paid== 'on' ? 1: 0;
+        $memberLoan->save();
+        if ($memberLoan) {
+
+
+            return redirect()->route('admin.member-loans')
+                ->with('success', true)
+                ->with('message', ' Loan Approved');
+
 
         } else {
 
@@ -352,10 +350,181 @@ class AdminController extends Controller
 
         }
     }
-    public function memberLoanMore($id){
+
+    public function memberLoanMore($id)
+    {
         $user = User::find($id);
-        $withdraws =Withdraw::where('user_id',$id)->paginate(100);
-        return view('superadmin.member-loan-more',compact('user','withdraws'));
+        $memberLoans = MemberLoan::where('user_id', $id)->paginate(100);
+        return view('superadmin.member-loan-more', compact('user', 'memberLoans'));
+    }
+    public function active($id){
+        $user = User::find($id);
+        $user->active = !$user->active;
+        $user->save();
+        //dd($user->Upline->level1);
+        $this->addTotalUpline($user);
+         $this->mlmSystem($user);
+        //$this->joinIncomeAdd($user);
+
+        if ($user) {
+
+            return redirect()->back()
+                ->with('success', true)
+                ->with('message', 'User Active Successfully done');
+
+
+        } else {
+
+            return redirect()->back()
+                ->with('fail', true)
+                ->with('message', 'User Active failed');
+
+        }
+    }
+    private function levelReturn($i,$val){
+        $ranger = [5,20,40,60,80,100,120,140,160,180,200];
+        return $ranger[$i-1] > $val && $val < 201;
+    }
+    private function addTotalUpline($user){
+       // $user = User::where('referral_code', $user->referral_code)->first();
+        $totalUpline = TotalUpline::where('user_id',$user->Upline->level1)->first();
+        $totalUplineSave = TotalUpline::find($totalUpline->id);
+        for ($i=1;$i<12;$i++){
+            $ranger = [5,20,40,60,80,100,120,140,160,180,200];
+
+            if( $this->levelReturn($i,$totalUpline->{'level'.$i})){
+                if($totalUplineSave->{'level'.$i} == 0 && $i!=1){
+                    $totalUplineSave->{'level'.$i} += $totalUplineSave->{'level'.($i - 1)} + 1;
+                }else{
+                    $totalUplineSave->{'level'.$i} += 1;
+                }
+
+                $totalUplineSave->save();
+
+                break;
+            }
+        }
+    }
+    private function mlmSystem($user)
+    {
+        if (isset($user)) {
+            $refferalUser = $user->Upline;
+                $refferalUpline = Upline::where('user_id', $refferalUser->level1)->first();
+                $upline = new Upline();
+                $upline->user_id = $user->id;
+                //$upline->level1 = $refferalUser->id;
+                $this->addLevelTotalUpline($refferalUser->level1, 'level1');
+                // $this->addLevelIncome($refferalUpline, 'level1');
+
+
+                if ($refferalUpline) {
+                    if ($refferalUpline->level1) {
+                        //$upline->level2 = $refferalUpline->level1;
+                        $this->addLevelTotalUpline($refferalUpline->level1, 'level2');
+                        // $this->addLevelIncome($refferalUpline->level1, 'level2');
+
+                    }
+                    if ($refferalUpline->level2) {
+                        //$upline->level3 = $refferalUpline->level2;
+                        $this->addLevelTotalUpline($refferalUpline->level2, 'level3');
+                        //$this->addLevelIncome($refferalUpline->level2, 'level3');
+
+
+                    }
+                    if ($refferalUpline->level3) {
+                        //$upline->level4 = $refferalUpline->level3;
+                        $this->addLevelTotalUpline($refferalUpline->level3, 'level4');
+                        //$this->addLevelIncome($refferalUpline->level3, 'level4');
+
+
+                    }
+                    if ($refferalUpline->level4) {
+                        //$upline->level5 = $refferalUpline->level4;
+                        $this->addLevelTotalUpline($refferalUpline->level4, 'level5');
+                        //$this->addLevelIncome($refferalUpline->level4, 'level5');
+
+
+                    }
+                    if ($refferalUpline->level5) {
+                        //$upline->level6 = $refferalUpline->level5;
+                        $this->addLevelTotalUpline($refferalUpline->level5, 'level6');
+
+
+                    }
+                    if ($refferalUpline->level6) {
+                        //$upline->level7 = $refferalUpline->level6;
+                        $this->addLevelTotalUpline($refferalUpline->level6, 'level7');
+
+
+                    }
+                    if ($refferalUpline->level7) {
+                        //$upline->level8 = $refferalUpline->level7;
+                        $this->addLevelTotalUpline($refferalUpline->level7, 'level8');
+
+
+                    }
+                    if ($refferalUpline->level8) {
+                       // $upline->level9 = $refferalUpline->level8;
+                        $this->addLevelTotalUpline($refferalUpline->level8, 'level9');
+
+
+                    }
+                    if ($refferalUpline->level9) {
+                       // $upline->level10 = $refferalUpline->level9;
+                        $this->addLevelTotalUpline($refferalUpline->level9, 'level10');
+
+
+                    }
+                    if ($refferalUpline->level10) {
+                        //$upline->level11 = $refferalUpline->level10;
+                        $this->addLevelTotalUpline($refferalUpline->level10, 'level11');
+
+
+                    }
+
+
+                }
+
+               // $upline->save();
+
+                DB::commit();
+
+            }
+
+
+    }
+
+    /**
+     * @param $id
+     * @param $level
+     */
+    private function addLevelTotalUpline($id, $level)
+    {
+        $totalUpline = TotalUpline::where('user_id', $id);
+        $users = $totalUpline->first();
+        if ($users) {
+//            $totalUpline->update([
+//                $level => $users->{$level} + 1
+//            ]);
+            $this->addLevelIncome($id, $level, $users);
+
+        }
+    }
+
+    private function addLevelIncome($id, $level, $users)
+    {
+        $amount = 0;
+        if ($this->levelSetting) {
+            $amount = $this->levelSetting->refferal;
+        }
+        $totalUpline = TotalUpline::where('user_id', $id)->first();
+        for ($i = 1; $i <= 11; $i++) {
+            $levelIncome = LevelIncome::where('user_id', $id)->update([
+                'level' . $i => $totalUpline->{'level' . $i} * $amount
+            ]);
+        }
+
+
     }
 
 

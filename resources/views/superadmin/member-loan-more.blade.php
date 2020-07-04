@@ -43,7 +43,7 @@
                                             Loan (Ksh)
                                         </th>
                                         <th>
-                                            Fee(Ksh) (7%)
+                                            Fee(Ksh)
                                         </th>
                                         <th>
                                             Status
@@ -52,33 +52,33 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($withdraws as $withdraw)
+                                    @foreach($memberLoans as $memberLoan)
                                         <tr>
-                                            <td>{{$withdraw->User->name}}</td>
-                                            <td>{{$withdraw->User->email}}</td>
-                                            <td>{{$withdraw->account}}</td>
+                                            <td>{{$memberLoan->User->name}}</td>
+                                            <td>
+                                                {{$memberLoan->User->email}}
+                                            </td>
+                                            <td>
+                                                {{$memberLoan->User->referral_code}}
+                                            </td>
+                                            <td>
+                                                {{$memberLoan->amount}}
+                                            </td>
+                                            <td>
+                                                {{$memberLoan->interest}}
+                                            </td>
+                                            <td>
+                                                {{$memberLoan->paid ? 'Paid' :'Unpaid'}}
+                                            </td>
 
-                                            <td>{{$withdraw->amount}}</td>
-                                            <td>{{$withdraw->fees}}</td>
-                                            @if(!$withdraw->status)
-                                                <td>
 
-                                                    Pending
-
-                                                </td>
-                                            @else
-                                                <td>
-                                                    Approved
-                                                </td>
-                                            @endif
 
                                         </tr>
                                     @endforeach
 
-
                                     </tbody>
                                 </table>
-                                {{$withdraws->links()}}
+                                {{$memberLoans->links()}}
                             </div>
 
                         </div>

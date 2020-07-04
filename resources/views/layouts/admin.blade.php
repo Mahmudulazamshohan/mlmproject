@@ -43,7 +43,9 @@
 
 <div class="header">
     <div class="pull-left">
-        <div class="logo"><a href="{{route('dashboard')}}"><span>{{env('APP_NAME')}}</span></a></div>
+        <div class="logo">
+            <a href="{{url('https://inuabizz.com/')}}"><span>{{env('APP_NAME')}}</span></a>
+        </div>
         <div class="hamburger sidebar-toggle">
             <span class="line"></span>
             <span class="line"></span>

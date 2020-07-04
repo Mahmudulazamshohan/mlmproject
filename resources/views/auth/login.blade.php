@@ -42,45 +42,52 @@
                         <p style="font-size: 30px;font-family: cursive;text-align: center;color: #0ea432;">{{env('APP_NAME')}}</p>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
-                            <div class="form-group @error('email') has-error @enderror">
-                                <label>Email address</label>
-                                <input type="email" name="email" class="form-control" placeholder="Email">
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
+                            <div class="form-group @error('email') has-error @enderror
+                                 @error('phone') has-error @enderror">
+                            <label>Email address</label>
+                            <input type="text" name="login" class="form-control" placeholder="Email or phone"
+                                   value="{{ old('phone') ?: old('email') }}">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
                                         <strong class="error-form" style="color: red;">{{ $message }}</strong>
                                     </span>
-                                @enderror
-
-                            </div>
-                            <div class="form-group @error('email') has-error @enderror">
-                                <label>Password</label>
-                                <input type="password" name="password" class="form-control" placeholder="Password">
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
+                            @enderror
+                            @error('phone')
+                            <span class="invalid-feedback" role="alert">
                                         <strong class="error-form" style="color: red;">{{ $message }}</strong>
                                     </span>
-                                @enderror
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Remember Me
-                                </label>
-{{--                                <label class="pull-right">--}}
-{{--                                    <a href="#">Forgotten Password?</a>--}}
-{{--                                </label>--}}
+                            @enderror
 
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
-
-                            <div class="register-link m-t-15 text-center">
-                                <p>Don't have account ? <a href="{{route('register')}}"> Sign Up Here</a></p>
-                            </div>
-                        </form>
                     </div>
+                    <div class="form-group @error('email') has-error @enderror">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong class="error-form" style="color: red;">{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Remember Me
+                        </label>
+                        {{--                                <label class="pull-right">--}}
+                        {{--                                    <a href="#">Forgotten Password?</a>--}}
+                        {{--                                </label>--}}
+
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
+
+                    <div class="register-link m-t-15 text-center">
+                        <p>Don't have account ? <a href="{{route('register')}}"> Sign Up Here</a></p>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 </body>

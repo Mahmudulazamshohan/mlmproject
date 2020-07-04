@@ -2,26 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d30d668-e292-4ace-882e-a4181cc7fb13" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/images/mpesa.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/superadmin/member-loan-more.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/confirm.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/loan.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mlmproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mlmproject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LevelsEarningsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LevelsEarningsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WithdrawController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WithdrawController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Withdraw.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Withdraw.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_26_062519_create_withdraws_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_26_062519_create_withdraws_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_06_135123_create_push_notifications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_06_135123_create_push_notifications_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_06_135218_create_push_notification_views_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_06_135218_create_push_notification_views_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlmproject.zip" beforeDir="false" afterPath="$PROJECT_DIR$/mlmproject.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/block.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/block.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/profile.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/levels-and-earnings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/levels-and-earnings.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/refferal-link.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/refferal-link.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/withdraw.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/withdraw.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/level-settings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/level-settings.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/push-notification.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/push-notification.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/admin-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/admin-sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/manage-news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/manage-news.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/manage-views.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/manage-views.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/superadmin/member-loan-details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/member-loan-details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/member-loan-more.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/member-loan-more.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/superadmin/member-loan.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/member-loan.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/superadmin/withdraw-request.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/superadmin/withdraw-request.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,6 +163,7 @@
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
       <path value="$PROJECT_DIR$/vendor/paypal/rest-api-sdk-php" />
+      <path value="$PROJECT_DIR$/vendor/bixbyte/jambopay" />
     </include_path>
   </component>
   <component name="ProjectId" id="1WfFsFszEzwWvHBLNEiwqTw9CVW" />
@@ -159,19 +177,19 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\phpdir\htdocs\mlmproject\resources\views\layouts" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\phpdir\htdocs\mlmproject\resources\views\admin" />
       <recent name="C:\phpdir\htdocs\mlmproject\assets\images" />
       <recent name="C:\phpdir\htdocs\mlmproject\resources\views\superadmin" />
       <recent name="C:\phpdir\htdocs\mlmproject\public\assets\images" />
       <recent name="C:\phpdir\htdocs\mlmproject\assets\js" />
-      <recent name="C:\phpdir\htdocs\mlmproject\public\assets\js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\phpdir\htdocs\mlmproject\resources\views\layouts" />
     </key>
   </component>
   <component name="RunManager">
@@ -226,6 +244,31 @@
       <workItem from="1581430937155" duration="9878000" />
       <workItem from="1581483460875" duration="7842000" />
       <workItem from="1581510155734" duration="8899000" />
+      <workItem from="1581695731917" duration="3123000" />
+      <workItem from="1581783249819" duration="2132000" />
+      <workItem from="1581827502579" duration="12752000" />
+      <workItem from="1581867554750" duration="20000" />
+      <workItem from="1581875744648" duration="1581000" />
+      <workItem from="1582004340516" duration="4461000" />
+      <workItem from="1582030962459" duration="924000" />
+      <workItem from="1582092594905" duration="2477000" />
+      <workItem from="1582132834654" duration="682000" />
+      <workItem from="1582174402551" duration="10296000" />
+      <workItem from="1582214449062" duration="8046000" />
+      <workItem from="1582981847804" duration="6589000" />
+      <workItem from="1583076275670" duration="29000" />
+      <workItem from="1583154203081" duration="5681000" />
+      <workItem from="1583248525799" duration="95000" />
+      <workItem from="1583389324549" duration="1199000" />
+      <workItem from="1583558785899" duration="1215000" />
+      <workItem from="1583595266081" duration="681000" />
+      <workItem from="1583684699362" duration="1370000" />
+      <workItem from="1583899627773" duration="1018000" />
+      <workItem from="1583987722744" duration="1819000" />
+      <workItem from="1593624558330" duration="603000" />
+      <workItem from="1593667051661" duration="2045000" />
+      <workItem from="1593673321599" duration="2514000" />
+      <workItem from="1593698222681" duration="599000" />
     </task>
     <servers />
   </component>
@@ -250,18 +293,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="363" y="83" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.728@0.0.1366.728" timestamp="1581146499559" />
-    <state x="404" y="63" key="FileChooserDialogImpl" timestamp="1580995336646">
+    <state x="350" y="63" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582985077264">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="404" y="63" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1580995336646" />
-    <state x="463" y="273" key="NewPhpFileDialog" timestamp="1581269560576">
+    <state x="350" y="63" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1582985077264" />
+    <state x="404" y="63" key="FileChooserDialogImpl" timestamp="1581881185838">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="273" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1581269560576" />
-    <state x="289" y="38" width="805" height="652" key="find.popup" timestamp="1581533582753">
+    <state x="404" y="63" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1581881185838" />
+    <state x="463" y="273" key="NewPhpFileDialog" timestamp="1581830206624">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="289" y="38" width="805" height="652" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1581533582753" />
+    <state x="463" y="273" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1581830206624" />
+    <state x="289" y="38" width="805" height="652" key="find.popup" timestamp="1583158548985">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="289" y="38" width="805" height="652" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1583158548985" />
     <state x="261" y="-1" width="840" height="1034" key="search.everywhere.popup" timestamp="1581444217206">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -272,7 +319,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php</url>
-          <line>246</line>
+          <line>248</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -282,8 +329,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/admin/dashboard.blade.php</url>
-          <line>293</line>
+          <line>301</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/WithdrawController.php</url>
+          <line>88</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php</url>
+          <line>244</line>
+          <properties>
+            <option name="className" value="\App\Http\Controllers\Auth\RegisterController" />
+            <option name="methodName" value="addLevelTotalUpline" />
+          </properties>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

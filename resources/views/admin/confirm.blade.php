@@ -34,14 +34,14 @@
 </style>
 
 <article>
-    <h1 style="text-align: center;color: red;">Blocked Account</h1>
+    <h1 style="text-align: center;color: green;">Confirmation Pending</h1>
     <div>
-        <p style="text-align: center !important;">An administrator has blocked you from running this website</p>
+        <p style="text-align: center !important;">Please wait until Admin confirm your account</p>
             <div class="boxes"
                  style="background: #eee;padding: 10px ; text-align: center;border-radius: 4px;border: 1px solid #d8d8d8;">
-                <h4 style="line-height: 1em;margin: 10px 0px;padding: 0;">Contact with us:</h4>
+                <h4 style="line-height: 1em;margin: 10px 0px;padding: 0;">Contact with us if there any problem:</h4>
         <p style="word-break: 2px !important;">
-            Email : support@inuabizz.com
+            Email : support@inuabizz.com {{auth()->user()->name}}
         </p>
         <p>Phone : +254751730030</p>
 

@@ -33,44 +33,52 @@
                                                     <th>Email</th>
                                                     <th>Referral ID</th>
                                                     <th>Amount</th>
-                                                    <th>Level</th>
+                                                    <th>Interest</th>
+                                                    <th>Paid</th>
+                                                    <th>Loan remaining (Ksh)</th>
                                                     <th>Loan</th>
 
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($withdraws as $withdraw)
+                                                @foreach($memberLoans as $memberLoan)
                                                     <tr>
-                                                        <td>{{$withdraw->User->name}}</td>
+                                                        <td>{{$memberLoan->User->name}}</td>
                                                         <td>
-                                                            {{$withdraw->User->email}}
+                                                            {{$memberLoan->User->email}}
                                                         </td>
                                                         <td>
-                                                            {{$withdraw->User->referral_code}}
+                                                            {{$memberLoan->User->referral_code}}
                                                         </td>
                                                         <td>
-                                                            {{$withdraw->sum('amount')}}
-                                                        </td>
-                                                        <td>
-                                                            {{ucfirst($withdraw->level) }}
+                                                            {{$memberLoan->amount}}
                                                         </td>
 
+                                                        <td>
+                                                            {{$memberLoan->interest}}
+                                                        </td>
+                                                        <td>
+                                                            {{$memberLoan->paid ? 'Paid' :'Unpaid'}}
+                                                        </td>
+                                                        <td>
+                                                            {{$memberLoan->where('paid',0)->sum('amount')}}
+                                                        </td>
 
                                                         <td>
-                                                            @if(!$withdraw->LoanApprove)
-                                                            <a href="{{route('admin.details.member-loan',$withdraw->id)}}"
+                                                            @if(!$memberLoan->paid)
+                                                            <a href="{{route('admin.details.member-loan',$memberLoan->id)}}"
                                                                class="btn btn-info">
                                                                 <i class="fa fa-check"></i>Approve
 
                                                             </a>
                                                             @else
-                                                                <a href="#"
+                                                                <a href="{{route('admin.details.member-loan',$memberLoan->id)}}"
                                                                    class="btn btn-info">
                                                                     <i class="fa fa-check"></i>Approved
 
                                                                 </a>
                                                             @endif
-                                                            <a href="{{route('admin.member-loan-more',$withdraw->User->id)}}"
+                                                            <a href="{{route('admin.member-loan-more',$memberLoan->User->id)}}"
                                                                class="btn btn-default" data-toggle="tooltip" title="Hooray!">
                                                                 <i class="fa fa-chevron-right"></i>
                                                             </a>
@@ -80,7 +88,7 @@
                                                 @endforeach
                                                 </tbody>
                                             </table>
-                                            {{$withdraws->links()}}
+                                            {{$memberLoans->links()}}
 
                                         </div>
                                     </div>

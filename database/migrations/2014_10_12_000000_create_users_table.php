@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('referral_code')->nullable();
             $table->boolean('is_blocked')->default(0);
+            $table->boolean('active')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

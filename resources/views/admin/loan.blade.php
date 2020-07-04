@@ -9,15 +9,17 @@
                             <div class="card alert">
                                 <div class="card-header"
                                      style="background: #1DE9B6 !important;border: none;border-radius: 0;">
-                                    <h4 style="color: #fff !important;">Withdraw</h4>
+                                    <h4 style="color: #fff !important;">Get new loan</h4>
                                     <div class="card-header-right-icon" style="color: #fff;font-weight: bold;">
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <p style="margin-left: 30px;" class="text-left text-primary">Current Account Available :- {{$totalAmount - ($totalWithdraw + $withdrawPending + $totalWithdrawFees + $withdrawPendingFees)}} Ksh </p>
+                                    <p style="margin-left: 30px;" class="text-left text-primary">Current Loan Available
+
+                                        :- @if($memberLoanLast) {{$memberLoanLast->amount + $memberLoanLast->interest }} @else 0 @endif Ksh </p>
                                     <div class="horizontal-form-elements">
                                         <form class="form-horizontal" method="POST"
-                                              action="{{ route('store.withdraw') }}"
+                                              action="{{ route('store.loan') }}"
                                               enctype="multipart/form-data">
                                             @csrf
 
@@ -28,56 +30,31 @@
 
                                                     <div class="form-group">
                                                         <label
-                                                            class="col-sm-2 control-label">
-                                                            Payout Method
-                                                        </label>
-                                                        <div class="col-sm-10">
-                                                            <input type="radio" name="payment_method" value="mpesa"
-                                                                   checked>
-                                                            <img
-                                                                src="{{asset('assets/images/mpesa.png')}}" alt=""
-                                                                style="width:70px;height: 70px;">
-                                                            <input type="radio" name="payment_method"
-                                                                   value="bank_transfer"> <img
-                                                                src="{{asset('assets/images/bank_transfer.png')}}"
-                                                                alt="" style="width:70px;height: 70px;">
-
-                                                        </div>
-                                                        @error('payment_method')
-                                                        <span class="invalid-feedback" role="alert">
-                                                           <strong>{{ $message }}</strong>
-                                                         </span>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label
-                                                            class="col-sm-2 control-label">Account /Phone Number</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" class="form-control input-sm" value=""
-                                                                   name="account" placeholder="Account Email Address"
-                                                                   required>
-                                                        </div>
-                                                        @error('account')
-                                                        <span class="invalid-feedback" role="alert">
-                                                           <strong>{{ $message }}</strong>
-                                                         </span>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label
-                                                            class="col-sm-2 control-label">Amount</label>
+                                                            class="col-sm-2 control-label">Loan Amount</label>
                                                         <div class="col-sm-10">
                                                             <input type="number" class="form-control input-sm" value=""
-                                                                   name="amount" placeholder="Amount minimum Ksh 2000"
-                                                                    required>
+                                                                   name="amount" required>
                                                         </div>
                                                         @error('amount')
                                                         <span class="invalid-feedback" role="alert">
                                                            <strong>{{ $message }}</strong>
                                                          </span>
                                                         @enderror
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label
+                                                            class="col-sm-2 control-label"></label>
+                                                        <div class="col-sm-10">
+                                                            <input type="checkbox" name="agree">I have to pay 10%
+                                                            interest
+                                                            <br>
+                                                            @error('agree')
+                                                            <span class="invalid-feedback" role="alert">
+                                                           <strong>{{ $message }}</strong>
+                                                         </span>
+                                                            @enderror
+                                                        </div>
+
                                                     </div>
 
 
@@ -100,7 +77,7 @@
                             <div class="card alert">
                                 <div class="card-header"
                                      style="background: #1DE9B6 !important;border: none;border-radius: 0;">
-                                    <h4 style="color: #fff !important;">Previous Withdraw</h4>
+                                    <h4 style="color: #fff !important;">Previous Loan</h4>
                                     <div class="card-header-right-icon" style="color: #fff;font-weight: bold;">
                                     </div>
                                 </div>
@@ -109,35 +86,47 @@
                                         <table class="table table-bordered text-center">
                                             <thead>
                                             <tr>
-                                                <th>Account</th>
-                                                <th>Payment Method</th>
+                                                <th>Date</th>
                                                 <th>Amount</th>
-                                                <th>Fee</th>
+                                                <th>Interest</th>
+                                                <th>Approved</th>
                                                 <th>Status</th>
                                             </tr>
                                             </thead>
                                             <tbody>
 
 
-                                            @foreach($withdraws as $withdraw)
+                                            @foreach($memberLoans as $memberLoan)
                                                 <tr>
-                                                    <td>{{$withdraw->account}}</td>
-                                                    <td>{{strtoupper(str_replace("_"," ",$withdraw->payment_method))}}</td>
-                                                    <td>{{$withdraw->amount}}</td>
-                                                    <td>{{$withdraw->fees}}</td>
+                                                    <td>{{$memberLoan->created_at->format('Y-m-d')}}</td>
+                                                    <td>{{$memberLoan->amount}}</td>
+                                                    <td>{{$memberLoan->interest}}</td>
                                                     <td>
-                                                        @if($withdraw->status)
-                                                            <span class="label label-success">Paid</span>
+                                                        @if($memberLoan->approved)
+                                                            <span class="label label-success">Approved</span>
                                                         @else
                                                             <span class="label label-info">Pending</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if($memberLoan->paid)
+                                                            <span class="label label-success">Paid</span>
+                                                        @else
+                                                            <span class="label label-info">Unpaid</span>
                                                         @endif
 
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                            <tr>
+                                                <td></td>
+                                                <td>Total : {{$memberLoans->sum('amount')}}</td>
+                                                <td>Total : {{$memberLoans->sum('interest')}}</td>
+                                                <td></td>
+                                            </tr>
                                             </tbody>
                                         </table>
-                                        {{$withdraws->links()}}
+
                                     </div>
                                 </div>
 

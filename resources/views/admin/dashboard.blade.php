@@ -44,8 +44,14 @@
                                             </div>
                                             <div class="stat-content">
                                                 <div class="stat-text">Total</div>
+                                                @if($levelSettings)
                                                 <div
-                                                    class="stat-digit">{{$totalAmount - ($totalWithdraw + $withdrawPending + $totalWithdrawFees + $withdrawPendingFees)}}</div>
+                                                    class="stat-digit">{{($totalUplineAmount * $levelSettings->refferal) - ($totalWithdraw + $withdrawPending + $totalWithdrawFees + $withdrawPendingFees)}}</div>
+                                               @else
+                                                    <div>
+                                                        0
+                                                    </div>
+                                                @endif
                                             </div>
 
                                         </div>
@@ -76,8 +82,10 @@
                                             </div>
                                             <div class="stat-content p-t-12 p-b-12">
                                                 <div class="text-left dib">
-                                                    <div class="stat-heading">Withdraw</div>
-                                                    <div class="stat-text">{{$totalWithdraw }}</div>
+                                                    <div class="stat-heading">
+                                                        Loan Approved
+                                                    </div>
+                                                    <div class="stat-text">{{$memberLoan->where('approved',1)->sum('amount') }}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -92,8 +100,8 @@
                                             </div>
                                             <div class="stat-content p-t-12 p-b-12">
                                                 <div class="text-left dib">
-                                                    <div class="stat-heading">Withdraw Pending</div>
-                                                    <div class="stat-text">{{$withdrawPending}}</div>
+                                                    <div class="stat-heading">Loan Repayment</div>
+                                                    <div class="stat-text">{{$memberLoan->where('paid',1)->sum('amount') }}</div>
                                                 </div>
                                             </div>
                                         </div>

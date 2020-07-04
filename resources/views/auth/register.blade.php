@@ -29,9 +29,10 @@
 </head>
 
 <body class="bg-primary">
-
+<form method="POST" action="{{ route('register') }}">
+    @csrf
 <div class="unix-login">
-    <div class="container">
+    <div class="container" id="register">
 
         <div class="row">
             <div class="col-lg-5 col-lg-offset-3">
@@ -50,8 +51,7 @@
                     <div class="login-form">
                         <p style="font-size: 30px;font-family: cursive;text-align: center;color: #0ea432;">{{env('APP_NAME')}}</p>
 
-                        <form method="POST" action="{{ route('register') }}">
-                            @csrf
+
                             <div class="form-group @error('name') has-error @enderror">
                                 <label>Name</label>
                                 <input type="name" name="name" class="form-control" placeholder="Name">
@@ -104,11 +104,11 @@
                                 @enderror
                             </div>
                             <div class="form-group @error('country') has-error @enderror">
-                                <label>Country</label>
+                                <label>County</label>
                                 <select id="country" class="form-control"
                                         name="country">
-                                    <option value="Mombas">
-                                        Mombas
+                                    <option value="Mombasa">
+                                        Mombasa
                                     </option>
                                     <option value="Kwale"> Kwale</option>
                                     <option value="Kilifi"> Kilifi</option>
@@ -173,13 +173,13 @@
                                 </div>
                             @endif
 
-                            <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30"
-                                    @if(!$refferal_id) disabled @endif>  {{ __('Register') }}</button>
+                            <button type="button" class="btn btn-primary btn-flat m-b-30 m-t-30"
+                                    @if(!$refferal_id) disabled @endif id="next-btn">  {{ __('Next') }}</button>
 
                             <div class="register-link m-t-15 text-center">
                                 <p>Aready have an account ? <a href="{{route('login')}}"> Login here</a></p>
                             </div>
-                        </form>
+
                         <div class="boxes"
                              style="background: #eee;padding: 10px ; text-align: center;border-radius: 4px;border: 1px solid #d8d8d8;">
                             <h4 style="line-height: 1em;margin: 10px 0px;padding: 0;">Contact with us:</h4>
@@ -193,9 +193,59 @@
                 </div>
             </div>
         </div>
+    </div >
+    <div class="container" id="payment">
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-3">
+                <div class="login-content">
+                    <div class="login-form">
+                        <p style="text-transform: uppercase;font-size:18px;font-weight: bold;color: #3A78AD; text-align: center;">Payment Process Via Lipa Na Mpesa</p>
+                        <p class="text-left">
+                            On The M-Pesa Menu
+                        </p>
+                        <p class="text-left">
+                           Go to "Lipa Na M-Pesa and select Buy Goods
+                        </p>
+                        <p>
+                            Enter the Till Number <b>502698</b>
+                        </p>
+                        <p>
+                            Enter the Amount <b>Ksh 3500</b>
+                        </p>
+                        <p>
+                            Enter your M-PESA PIN
+                        </p>
+                          <p>
+                            Confirm that all details are correct and press OK
+                        </p>
+                        <p>
+                           You will receive a confirmation SMS from M-PESA immediately
+                        </p>
+                        <p>
+                           You account will activated upon confirmation of the payment
+                        </p>
+
+                        <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30"
+                                 >  {{ __('Register') }}</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
-
+</form>
 </body>
-
+<script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+<script>
+    $('#payment').hide()
+    $('#next-btn').click(function () {
+        $('#register').hide()
+        $('#payment').show()
+    })
+</script>
 </html>

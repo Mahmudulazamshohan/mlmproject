@@ -3,7 +3,8 @@
     $total = 0;
 
     $pushNotifications = \App\PushNotification::all();
-    $pushNotificationViews = \App\PushNotificationView::with('PushNotification')->where('id',\Illuminate\Support\Facades\Auth::id())->get();
+    $pushNotificationViews = \App\PushNotificationView::with('PushNotification')
+    ->where('id',\Illuminate\Support\Facades\Auth::id())->get();
     foreach ($pushNotificationViews as $pushNotificationView) {
         if($pushNotificationView->PushNotification){
             $total += 1;
@@ -12,11 +13,11 @@
     $total = $pushNotifications->count() - $total;
 @endphp
 <li class="header-icon dib"><i class="ti-bell"></i>
-    @if($total)
-    <button class="badge badge-success"
-            style="width: 25px;height: 25px;border-radius: 50%;border:none;background: #555;color: white;">1
-    </button>
-    @endif
+{{--    @if($total)--}}
+{{--    <button class="badge badge-success"--}}
+{{--            style="width: 25px;height: 25px;border-radius: 50%;border:none;background: #555;color: white;">{{$total}}--}}
+{{--    </button>--}}
+{{--    @endif--}}
     <div class="drop-down">
         <div class="dropdown-content-heading">
             <span class="text-left">Recent Notifications</span>
@@ -29,8 +30,8 @@
                            <div class="notification-content">
                                 <small class="notification-timestamp pull-right">{{$pushNotification->created_at->calendar()}}</small>
                                 <div class="notification-heading">Admin</div>
-                                @if($pushNotification->text)
-                                    <div class="notification-text"><?=$pushNotification->text?></div>
+                                @if($pushNotification->title)
+                                    <div class="notification-text"><?=$pushNotification->title?></div>
                                 @endif
                             </div>
                         </a>
